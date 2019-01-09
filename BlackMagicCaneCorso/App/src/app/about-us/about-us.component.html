@@ -1,0 +1,20 @@
+<div class="mainAbout">
+  <mat-card>
+    <mat-card-title>About Black Magic Cane Corsos</mat-card-title>
+    <mat-card-content>
+        I am a small hobby breeder located in North East Ohio close to PA. We are within 3 Hours of MI and NY.
+        I am that is also a preservation breeder meaning that I abide by our breed standard and strive to preserve
+        the integrity of the breed. I am a member of multiple Cane Corso clubs like ICCF, CCAA and also am an AKC CGC Evaluator.
+        Voodoo was my first Corso and I absolutely fell in love with the breed and I became so involved, after much study, I
+        decided to become a breeder. I have only had a couple litters and do not breed frequently so I can focus on titling my dogs.
+        I owner handle all my dogs in shows and also do all my own training. I like to keep personal relationships with everyone that
+        gets a puppy from me. I am here for my puppy owners always and offer health guarantees and life time support. 
+    </mat-card-content>
+    <mat-card-subtitle>
+        If you ever have question, please send an email to <a class="email" href="mailto:Blackmagiccanecorsos@gmail.com">Blackmagiccanecorsos@gmail.com</a>
+    </mat-card-subtitle>
+    <div class="images">
+        <img mat-card-image *ngFor="let img of imgs" src="{{img}}" (click)="viewImage(img)" />
+    </div>
+  </mat-card>
+</div>

@@ -1,0 +1,26 @@
+
+<mat-card-title>{{dog.Name}}</mat-card-title>
+<mat-card-subtitle class="titlesWon">{{dog.TitlesWon}}</mat-card-subtitle>
+<div class="images">
+    <img mat-card-image *ngFor="let img of dog.Images" src="{{img}}" (click)="viewImage(img)" />
+</div>
+<mat-card-subtitle class="about">About</mat-card-subtitle>
+<mat-card-content>
+  <span>{{dog.About}}</span>
+  <mat-card-subtitle class="temperment">Temperament</mat-card-subtitle>
+  <span>{{dog.Temperment}}</span>
+  <mat-card-subtitle class="health">Health</mat-card-subtitle>
+  <div *ngIf="dog.PedigreeURL2">
+      <span *ngIf="dog.PedigreeURL">Link to Sire Pedigree: <a href="{{dog.PedigreeURL}}">HERE</a></span>
+      <span *ngIf="dog.PedigreeURL2" class="secondPedigree">Link to Dim Pedigree: <a href="{{dog.PedigreeURL2}}">HERE</a></span>
+  </div>
+  <div *ngIf="dog.PedigreeURL && !dog.PedigreeURL2">
+      <span *ngIf="dog.PedigreeURL">Link to Pedigree: <a href="{{dog.PedigreeURL}}">HERE</a></span>
+  </div>
+  <br />
+  <span>{{dog.Health}}</span>
+  <span class="OFACardio">OFA Cardio: {{dog.OFACardio}}</span>
+  <span class="OFAElbows">OFA Elbows: {{dog.OFAElbows}}</span>
+  <span class="OFAEyes">OFA Eyes: {{dog.OFAEyes}}</span>
+  <span class="OFAPatella">OFA Patella: {{dog.OFAPatella}}</span>
+</mat-card-content>

@@ -1,0 +1,30 @@
+div.mainAbout{
+    background-color: grey;
+    height: fit-content;
+    min-height: 100%;
+    margin-top: 36px;
+}
+mat-card {
+    margin-right: auto;
+    margin-left: auto;
+    width:50%;
+}
+mat-card-title {
+    text-align: center;
+}
+mat-card-content {
+    font-size:  17pt;
+}
+mat-card-subtitle {
+    font-size: 12pt;
+}
+a.email{
+    color: lightgray;
+}
+img {
+    width: 15%;
+    margin: 0px;
+    padding-left: 5px;
+    padding-right: 5px;
+    cursor: pointer;
+}

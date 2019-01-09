@@ -1,0 +1,212 @@
+<div class="mainApp">
+  <mat-card>
+    <mat-card-title>Puppy Application</mat-card-title>
+    <mat-card-subtitle>*** Deposits are non-refundable but will be moved to a litter in a future if we do not have something that suites your needs ***</mat-card-subtitle>
+    <mat-card-content >
+        <form *ngIf="!IsSubmitted" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+          <div formGroupName="ContactInfo">
+            <div class="row">
+              <div class="column">
+                  <h3>Contact Info</h3>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <label>First Name:</label>
+                <input type="text" formControlName="FirstName" required>
+              </div>                  
+              <div class="column">
+                <label>Last Name:</label>
+                <input type="text" formControlName="LastName" required>
+              </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                  <label>Street:</label>
+                  <input type="text" formControlName="Street">
+                </div>
+              </div>
+              <div class="row">
+                <div class="column">
+                  <label>Street 2:</label>
+                  <input type="text" formControlName="Street2">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="column">
+                  <label>City:</label>
+                  <input type="text" formControlName="City">
+                </div>
+                <div class="column">
+                    <label>State:</label>
+                    <input type="text" formControlName="State">
+                </div>
+                <div class="column">
+                  <label>Postal / Zip Code:</label>
+                  <input type="text" formControlName="Zip">
+                </div>
+              </div>
+              <div class="row">
+                <div class="column">
+                  <label>E-mail:</label>
+                  <input type="email" formControlName="Email" email required>
+                </div>
+                <div class="column">
+                  <label>Phone Number:</label>
+                  <input type="text" formControlName="PhoneNumber" required>
+                </div>
+              </div>
+          </div>
+          <div>
+            <div class="row">
+                <div class="column">
+                  <label>
+                      Do you understand the breed is pronounced Kah-Ney Core-So?
+                      <mat-form-field>
+                          <mat-select placeholder="select one" formControlName="Understand" required>
+                              <mat-option [value]="true" >Got it!</mat-option>
+                              <mat-option [value]="true" >Understood and I do now!</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                  </label>
+                </div>
+              </div>
+          </div> 
+          <div formGroupName="PuppyInfo">
+            <div class="row">
+              <div class="column">
+                  <h3>Puppy Info</h3>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <mat-form-field>
+                    <mat-select placeholder="Company Home" formControlName="CompanyHome" required>
+                        <mat-option value="true" >Yes</mat-option>
+                        <mat-option value="false" >No</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+              </div>
+              <div class="column">
+                <mat-form-field>
+                    <mat-select placeholder="Prefered Gender" formControlName="GenderPreference" required (valuechanged)="valueChanged()"> 
+                        <mat-option value="Female" >Female</mat-option>
+                        <mat-option value="Male" >Male</mat-option>
+                        <mat-option value="Either" >Either</mat-option>                              
+                    </mat-select>
+                  </mat-form-field>
+              </div>
+          </div>
+        </div>
+          <div formGroupName="DogPlan">
+            <div class="row">
+              <div class="column">
+                <h3>What do you plan on doing with your dog?</h3>
+              </div>
+            </div>
+            <div class="row">
+              <mat-radio-group formControlName="ShowRing" required>
+                <div class="column">
+                  Show ring competition
+                </div>
+                <div class="column">
+                  <mat-radio-button value="Yes">Yes</mat-radio-button>
+                </div>
+                <div class="column">
+                  <mat-radio-button value="No">No</mat-radio-button>
+                </div>
+                <div class="column">
+                    <mat-radio-button value="Haven't decided yet">Haven't decided yet</mat-radio-button>
+                </div>
+              </mat-radio-group>
+            </div>
+            <div class="row">
+              <mat-radio-group formControlName="OtherFunThings" required>
+                <div class="column">
+                    Other Fun things: Agility, Obedience, Lure Coursing
+                </div>
+                <div class="column">
+                  <mat-radio-button value="Yes">Yes</mat-radio-button>
+                </div>
+                <div class="column">
+                  <mat-radio-button value="No">No</mat-radio-button>
+                </div>
+                <div class="column">
+                    <mat-radio-button value="Haven't decided yet">Haven't decided yet</mat-radio-button>
+                </div>
+              </mat-radio-group>
+            </div>
+            <div class="row">
+                <mat-radio-group formControlName="TherapyDog" required>
+                  <div class="column">
+                      Certification as therapy dog
+                  </div>
+                  <div class="column">
+                    <mat-radio-button value="Yes">Yes</mat-radio-button>
+                  </div>
+                  <div class="column">
+                    <mat-radio-button value="No">No</mat-radio-button>
+                  </div>
+                  <div class="column">
+                      <mat-radio-button value="Haven't decided yet">Haven't decided yet</mat-radio-button>
+                  </div>
+                </mat-radio-group>
+              </div>
+              <div class="row">
+                <mat-radio-group formControlName="ServiceDog" required>
+                  <div class="column">
+                      Service Dog/Emotional Support
+                  </div>
+                  <div class="column">
+                    <mat-radio-button value="Yes">Yes</mat-radio-button>
+                  </div>
+                  <div class="column">
+                    <mat-radio-button value="No">No</mat-radio-button>
+                  </div>
+                  <div class="column">
+                      <mat-radio-button value="Haven't decided yet">Haven't decided yet</mat-radio-button>
+                  </div>
+                </mat-radio-group>
+              </div>
+              <div class="row">
+                <mat-radio-group formControlName="Breeding" required>
+                  <div class="column">
+                      Possible use for future breeding
+                  </div>
+                  <div class="column">
+                    <mat-radio-button value="Yes">Yes</mat-radio-button>
+                  </div>
+                  <div class="column">
+                    <mat-radio-button value="No">No</mat-radio-button>
+                  </div>
+                  <div class="column">
+                      <mat-radio-button value="Haven't decided yet">Haven't decided yet</mat-radio-button>
+                  </div>
+                </mat-radio-group>
+              </div>
+              <div class="row">
+                <mat-radio-group formControlName="CouchPotato" required>
+                  <div class="column">
+                      Couch Potato/ Tv watching buddy
+                    </div>
+                  <div class="column">
+                    <mat-radio-button value="Yes">Yes</mat-radio-button>
+                  </div>
+                  <div class="column">
+                    <mat-radio-button value="No">No</mat-radio-button>
+                  </div>
+                  <div class="column">
+                      <mat-radio-button value="Haven't decided yet">Haven't decided yet</mat-radio-button>
+                  </div>
+                </mat-radio-group>
+              </div>
+            </div>
+          <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+        </form>
+        <div *ngIf="IsSubmitted">
+          <h1>Thank you for your interest, we will contact you.</h1>
+        </div>
+    </mat-card-content>
+  </mat-card>
+</div>

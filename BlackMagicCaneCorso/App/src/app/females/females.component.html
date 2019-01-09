@@ -1,0 +1,8 @@
+<div class="mainFemale">
+  <div *ngFor="let dog of femaleDogs">
+      <mat-card *ngIf="canShow(dog.Name)">
+          <dog-info *ngIf="canShow(dog.Name)" [dog]="dog"></dog-info>
+      </mat-card> 
+  </div>
+   
+</div>

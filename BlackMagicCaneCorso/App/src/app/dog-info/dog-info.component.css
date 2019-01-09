@@ -32,3 +32,7 @@ span.PennHip, span.OFACardio, span.OFAElbows, span.OFAEyes, span.OFAPatella {
 span.secondPedigree{
     display: block;
 }
+a, a:visited{
+    color: #F9D5A6;
+    text-decoration: none;
+}

@@ -5,7 +5,7 @@ import {NavItem} from './nav-item';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
@@ -40,6 +40,11 @@ export class AppComponent {
           displayName: 'Henny',
           imgSource: 'assets/images/henny3_orig.jpg',
           route: 'males/Henny'
+        },
+        {
+          displayName: 'Omen',
+          imgSource: '',
+          route: 'males/Omen'
         }
       ]
     },

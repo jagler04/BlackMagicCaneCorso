@@ -12,7 +12,7 @@ namespace BlackMagicCaneCorso.Business
     {
         public void Register(RegistrationForm frm)
         {
-            MailMessage mail = new MailMessage("webadmin@blackmagiccanecorso.com", "jagler04@gmail.com");
+            MailMessage mail = new MailMessage("webadmin@blackmagiccanecorso.com", "Blackmagiccanecorsos@gmail.com");
             //MailMessage mail = new MailMessage("webadmin@blackmagiccanecorso.com", "Blackmagiccanecorsos@gmail.com");
             SmtpClient client = new SmtpClient();
             client.Port = 587;

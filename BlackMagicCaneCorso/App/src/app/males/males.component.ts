@@ -44,6 +44,20 @@ export class MalesComponent implements OnInit {
         OFACardio: "Pending will be done in 2018",
         OFAPatella: "Normal",
         OFAEyes: "Pending" 
+      },
+      {
+        Name: "Omen",
+        About: 'Information coming soon.',
+        Health: "Health Testing is very important and Omen will be tested before being bred.",
+        Temperment: 'Omen is a very motivated hjard working dog.',
+        PedigreeURL: "",
+        Images: [],
+        TitlesWon: "",
+        PennHip: "Pending",
+        OFAElbows: "Pending",
+        OFACardio: "Pending",
+        OFAPatella: "Pending",
+        OFAEyes: "Pending" 
       }
     ];
   }

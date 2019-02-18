@@ -89,11 +89,7 @@ export class AppComponent {
       this.Dogs = resp;
       if(this.Dogs){
         this.MakeNav();
-      }
-      else{
-
-      }
-      
+      }     
     });
   }
   ngAfterViewInit() {

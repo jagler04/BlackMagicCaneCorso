@@ -40,7 +40,11 @@ import { PuppyApplicationComponent } from './puppy-application/puppy-application
 import { ReactiveFormsModule } from '@angular/forms';
 import { PuppiesService } from './Services/puppies.service';
 import { PuppiesClient } from './Clients/PuppiesClient';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule } from '@angular/common/http';
+import { DogListComponent } from './dog-list/dog-list.component';
+import { DogListItemComponent } from './dog-list-item/dog-list-item.component';
+import { EditDogDialogComponent } from './edit-dog-dialog/edit-dog-dialog.component';
+import { EditPicturesDialogComponent } from './edit-pictures-dialog/edit-pictures-dialog.component'; 
 
 const appRoutes: Routes = [
   { path: "", component: HomeDetailComponent },
@@ -53,6 +57,7 @@ const appRoutes: Routes = [
   { path: "breed", component: BreedStandardComponent },
   { path: "about", component: AboutUsComponent },
   { path: "application", component: PuppyApplicationComponent },
+  { path: "EditDogs", component: DogListComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -72,7 +77,11 @@ const appRoutes: Routes = [
     ImageDialogComponent,
     AboutUsComponent,
     BreedStandardComponent,
-    PuppyApplicationComponent
+    PuppyApplicationComponent,
+    DogListComponent,
+    DogListItemComponent,
+    EditDogDialogComponent,
+    EditPicturesDialogComponent
   ],
   imports: [
     RouterModule.forRoot(

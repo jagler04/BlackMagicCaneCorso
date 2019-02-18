@@ -1,0 +1,18 @@
+<mat-card>
+  <button mat-icon-button (click)="ShowEdit()">
+    <mat-icon>edit</mat-icon>
+  </button>
+  <button mat-icon-button (click)="ShowPhotos()">
+    <mat-icon>photo_library</mat-icon>
+  </button>
+  <h2>{{Dog.name}}</h2>
+  <div ngIf="opened" (click)="OpenOrClose()">
+      <div><span><b>Color:</b> {{Dog.color}}</span></div>
+      <div><span><b>BiteType:</b> {{Dog.biteType}}</span></div>
+      <div><span><b>Weight:</b> {{Dog.weight}}</span></div>
+      <div><span><b>Birthdate:</b> {{Dog.birthdate | date:'longDate'}}</span></div>
+      <div><span><b>Gender:</b> {{Dog.gender}}</span></div>
+      <mat-card-subtitle >About</mat-card-subtitle>    
+      <span>{{Dog.description}}</span>
+  </div>
+</mat-card>

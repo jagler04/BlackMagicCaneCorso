@@ -1,4 +1,5 @@
-﻿using BlackMagicCaneCorso.Models;
+﻿using BlackMagicCaneCorso.Data;
+using BlackMagicCaneCorso.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,11 @@ namespace BlackMagicCaneCorso.Business
 {
     public class Puppies
     {
+        private readonly PuppiesRepository _puppiesRepository;
+        public Puppies(PuppiesRepository puppiesRepository)
+        {
+            _puppiesRepository = puppiesRepository;
+        }
         public void Register(RegistrationForm frm)
         {
             MailMessage mail = new MailMessage("webadmin@blackmagiccanecorso.com", "Blackmagiccanecorsos@gmail.com");
@@ -39,6 +45,26 @@ namespace BlackMagicCaneCorso.Business
                 + Environment.NewLine + $"Will be used in Couch Potato/ Tv watching buddy: {frm.CouchBuddy}";
 
             client.Send(mail);
+        }
+
+        public List<Dog> AddDog(Dog newDog)
+        {
+            _puppiesRepository.AddDog(newDog);
+            return _puppiesRepository.GetDogs();
+        }
+        public List<Dog> UpdateDog(Dog updateDog)
+        {
+            _puppiesRepository.UpdateDog(updateDog);
+            return _puppiesRepository.GetDogs();
+        }
+
+        public List<Dog> GetDogs()
+        {
+            return _puppiesRepository.GetDogs();
+        }
+        public List<Dog> GetDogsByGender(string gender)
+        {
+            return _puppiesRepository.GetDogsByGender(gender);
         }
     }
 }

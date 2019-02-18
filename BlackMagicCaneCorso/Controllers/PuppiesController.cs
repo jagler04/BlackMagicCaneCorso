@@ -27,15 +27,15 @@ namespace BlackMagicCaneCorso.Controllers
         }
         [Route("Add")]
         [HttpPost]
-        [ProducesResponseType(typeof(List<Dog>), 200)]
+        [ProducesResponseType(typeof(List<DogInfo>), 200)]
         public IActionResult AddPuppy([FromBody] Dog newDog)
         {
             var dogs = _puppies.AddDog(newDog);
-            return Ok(JsonConvert.SerializeObject(dogs));
+            return Ok(dogs);
         }
         [Route("Update")]
         [HttpPost]
-        [ProducesResponseType(typeof(List<Dog>), 200)]
+        [ProducesResponseType(typeof(List<DogInfo>), 200)]
         public IActionResult UpdatePuppy([FromBody] Dog updateDog)
         {
 
@@ -43,17 +43,18 @@ namespace BlackMagicCaneCorso.Controllers
         }
         [Route("GetDogs")]
         [HttpGet]
-        [ProducesResponseType(typeof(List<Dog>), 200)]
+        [ProducesResponseType(typeof(List<DogInfo>), 200)]
         public IActionResult Get()
         {
-            return Ok(JsonConvert.SerializeObject(_puppies.GetDogs()));
+            var puppies = _puppies.GetDogs();
+            return Ok(puppies);
         }
         [Route("GetDogsByGender")]
         [HttpGet]
-        [ProducesResponseType(typeof(List<Dog>), 200)]
+        [ProducesResponseType(typeof(List<DogInfo>), 200)]
         public IActionResult GetByGender(string gender)
         {
-            return Ok(JsonConvert.SerializeObject(_puppies.GetDogsByGender(gender)));
+            return Ok(_puppies.GetDogsByGender(gender));
         }
     }
 }

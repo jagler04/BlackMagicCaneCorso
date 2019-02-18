@@ -5,12 +5,11 @@ using System.Threading.Tasks;
 
 namespace BlackMagicCaneCorso.Models
 {
-    public class Picture
+    public class PictureInfo
     {
         public int ID { get; set; }
         public int DogID { get; set; }
         public string FileName { get; set; }
         public bool ProfilePic { get; set; }
-        public Dog Dog { get; set; }
     }
 }

@@ -47,24 +47,58 @@ namespace BlackMagicCaneCorso.Business
             client.Send(mail);
         }
 
-        public List<Dog> AddDog(Dog newDog)
+        public List<DogInfo> AddDog(Dog newDog)
         {
             _puppiesRepository.AddDog(newDog);
-            return _puppiesRepository.GetDogs();
+            return GetDogData();
         }
-        public List<Dog> UpdateDog(Dog updateDog)
+        public List<DogInfo> UpdateDog(Dog updateDog)
         {
             _puppiesRepository.UpdateDog(updateDog);
-            return _puppiesRepository.GetDogs();
+            return GetDogData();
         }
 
-        public List<Dog> GetDogs()
+        public List<DogInfo> GetDogs()
         {
-            return _puppiesRepository.GetDogs();
+            return GetDogData();
         }
-        public List<Dog> GetDogsByGender(string gender)
+        public List<DogInfo> GetDogsByGender(string gender)
         {
-            return _puppiesRepository.GetDogsByGender(gender);
+            return GetDogData(gender);
+        }
+
+        private List<DogInfo> GetDogData(string gender = "All")
+        {
+            var dogs = gender == "All" ? _puppiesRepository.GetDogs() : _puppiesRepository.GetDogsByGender(gender);
+            var returnList = new List<DogInfo>();
+            foreach (var dog in dogs)
+            {
+                var info = new DogInfo
+                {
+                    ID = dog.ID,
+                    Name = dog.Name,
+                    Titles = dog.Titles,
+                    Color = dog.Color,
+                    BiteType = dog.BiteType,
+                    Birthdate = dog.Birthdate,
+                    Weight = dog.Weight,
+                    Description = dog.Description,
+                    Gender = dog.Gender,
+                    Pictures = new List<PictureInfo>()
+                };
+                foreach(var pic in _puppiesRepository.GetPicturesByDogId(dog.ID))
+                {
+                    info.Pictures.Add(new PictureInfo
+                    {
+                        ID = pic.ID,
+                        DogID = pic.DogID,
+                        FileName = pic.FileName,
+                        ProfilePic = pic.ProfilePic
+                    });
+                }
+                returnList.Add(info);                
+            }
+            return returnList;
         }
     }
 }

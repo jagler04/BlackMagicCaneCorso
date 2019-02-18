@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { dogInfo } from '../dog-info';
 import { ImageDialogComponent } from '../image-dialog/image-dialog.component'
+import { DogInfo } from '../Clients/PuppiesClient'
 
 @Component({
   selector: 'dog-info',
@@ -10,7 +11,8 @@ import { ImageDialogComponent } from '../image-dialog/image-dialog.component'
 })
 export class DogInfoComponent implements OnInit {
  @Input()
- dog: dogInfo;
+ dog: DogInfo;
+ profilePicture: string;
 
   constructor(public dialog: MatDialog) { }
 

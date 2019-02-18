@@ -72,7 +72,7 @@ export class PuppiesClient {
         return _observableOf<void>(<any>null);
     }
 
-    addPuppy(newDog: Dog): Observable<Dog[] | null> {
+    addPuppy(newDog: Dog): Observable<DogInfo[] | null> {
         let url_ = this.baseUrl + "/Puppies/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -95,14 +95,14 @@ export class PuppiesClient {
                 try {
                     return this.processAddPuppy(<any>response_);
                 } catch (e) {
-                    return <Observable<Dog[] | null>><any>_observableThrow(e);
+                    return <Observable<DogInfo[] | null>><any>_observableThrow(e);
                 }
             } else
-                return <Observable<Dog[] | null>><any>_observableThrow(response_);
+                return <Observable<DogInfo[] | null>><any>_observableThrow(response_);
         }));
     }
 
-    protected processAddPuppy(response: HttpResponseBase): Observable<Dog[] | null> {
+    protected processAddPuppy(response: HttpResponseBase): Observable<DogInfo[] | null> {
         const status = response.status;
         const responseBlob = 
             response instanceof HttpResponse ? response.body : 
@@ -116,7 +116,7 @@ export class PuppiesClient {
             if (resultData200 && resultData200.constructor === Array) {
                 result200 = [] as any;
                 for (let item of resultData200)
-                    result200!.push(Dog.fromJS(item));
+                    result200!.push(DogInfo.fromJS(item));
             }
             return _observableOf(result200);
             }));
@@ -125,10 +125,10 @@ export class PuppiesClient {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<Dog[] | null>(<any>null);
+        return _observableOf<DogInfo[] | null>(<any>null);
     }
 
-    updatePuppy(updateDog: Dog): Observable<Dog[] | null> {
+    updatePuppy(updateDog: Dog): Observable<DogInfo[] | null> {
         let url_ = this.baseUrl + "/Puppies/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -151,14 +151,14 @@ export class PuppiesClient {
                 try {
                     return this.processUpdatePuppy(<any>response_);
                 } catch (e) {
-                    return <Observable<Dog[] | null>><any>_observableThrow(e);
+                    return <Observable<DogInfo[] | null>><any>_observableThrow(e);
                 }
             } else
-                return <Observable<Dog[] | null>><any>_observableThrow(response_);
+                return <Observable<DogInfo[] | null>><any>_observableThrow(response_);
         }));
     }
 
-    protected processUpdatePuppy(response: HttpResponseBase): Observable<Dog[] | null> {
+    protected processUpdatePuppy(response: HttpResponseBase): Observable<DogInfo[] | null> {
         const status = response.status;
         const responseBlob = 
             response instanceof HttpResponse ? response.body : 
@@ -172,7 +172,7 @@ export class PuppiesClient {
             if (resultData200 && resultData200.constructor === Array) {
                 result200 = [] as any;
                 for (let item of resultData200)
-                    result200!.push(Dog.fromJS(item));
+                    result200!.push(DogInfo.fromJS(item));
             }
             return _observableOf(result200);
             }));
@@ -181,10 +181,10 @@ export class PuppiesClient {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<Dog[] | null>(<any>null);
+        return _observableOf<DogInfo[] | null>(<any>null);
     }
 
-    get(): Observable<Dog[] | null> {
+    get(): Observable<DogInfo[] | null> {
         let url_ = this.baseUrl + "/Puppies/GetDogs";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -203,14 +203,14 @@ export class PuppiesClient {
                 try {
                     return this.processGet(<any>response_);
                 } catch (e) {
-                    return <Observable<Dog[] | null>><any>_observableThrow(e);
+                    return <Observable<DogInfo[] | null>><any>_observableThrow(e);
                 }
             } else
-                return <Observable<Dog[] | null>><any>_observableThrow(response_);
+                return <Observable<DogInfo[] | null>><any>_observableThrow(response_);
         }));
     }
 
-    protected processGet(response: HttpResponseBase): Observable<Dog[] | null> {
+    protected processGet(response: HttpResponseBase): Observable<DogInfo[] | null> {
         const status = response.status;
         const responseBlob = 
             response instanceof HttpResponse ? response.body : 
@@ -224,7 +224,7 @@ export class PuppiesClient {
             if (resultData200 && resultData200.constructor === Array) {
                 result200 = [] as any;
                 for (let item of resultData200)
-                    result200!.push(Dog.fromJS(item));
+                    result200!.push(DogInfo.fromJS(item));
             }
             return _observableOf(result200);
             }));
@@ -233,10 +233,10 @@ export class PuppiesClient {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<Dog[] | null>(<any>null);
+        return _observableOf<DogInfo[] | null>(<any>null);
     }
 
-    getByGender(gender: string | null | undefined): Observable<Dog[] | null> {
+    getByGender(gender: string | null | undefined): Observable<DogInfo[] | null> {
         let url_ = this.baseUrl + "/Puppies/GetDogsByGender?";
         if (gender !== undefined)
             url_ += "gender=" + encodeURIComponent("" + gender) + "&"; 
@@ -257,14 +257,14 @@ export class PuppiesClient {
                 try {
                     return this.processGetByGender(<any>response_);
                 } catch (e) {
-                    return <Observable<Dog[] | null>><any>_observableThrow(e);
+                    return <Observable<DogInfo[] | null>><any>_observableThrow(e);
                 }
             } else
-                return <Observable<Dog[] | null>><any>_observableThrow(response_);
+                return <Observable<DogInfo[] | null>><any>_observableThrow(response_);
         }));
     }
 
-    protected processGetByGender(response: HttpResponseBase): Observable<Dog[] | null> {
+    protected processGetByGender(response: HttpResponseBase): Observable<DogInfo[] | null> {
         const status = response.status;
         const responseBlob = 
             response instanceof HttpResponse ? response.body : 
@@ -278,7 +278,7 @@ export class PuppiesClient {
             if (resultData200 && resultData200.constructor === Array) {
                 result200 = [] as any;
                 for (let item of resultData200)
-                    result200!.push(Dog.fromJS(item));
+                    result200!.push(DogInfo.fromJS(item));
             }
             return _observableOf(result200);
             }));
@@ -287,7 +287,7 @@ export class PuppiesClient {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<Dog[] | null>(<any>null);
+        return _observableOf<DogInfo[] | null>(<any>null);
     }
 }
 
@@ -399,6 +399,134 @@ export interface IRegistrationForm {
     couchBuddy?: string | undefined;
 }
 
+export class DogInfo implements IDogInfo {
+    id!: number;
+    name?: string | undefined;
+    titles?: string | undefined;
+    color?: string | undefined;
+    biteType?: string | undefined;
+    weight!: number;
+    description?: string | undefined;
+    birthdate!: Date;
+    gender?: string | undefined;
+    pictures?: PictureInfo[] | undefined;
+
+    constructor(data?: IDogInfo) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.id = data["id"];
+            this.name = data["name"];
+            this.titles = data["titles"];
+            this.color = data["color"];
+            this.biteType = data["biteType"];
+            this.weight = data["weight"];
+            this.description = data["description"];
+            this.birthdate = data["birthdate"] ? new Date(data["birthdate"].toString()) : <any>undefined;
+            this.gender = data["gender"];
+            if (data["pictures"] && data["pictures"].constructor === Array) {
+                this.pictures = [] as any;
+                for (let item of data["pictures"])
+                    this.pictures!.push(PictureInfo.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): DogInfo {
+        data = typeof data === 'object' ? data : {};
+        let result = new DogInfo();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        data["titles"] = this.titles;
+        data["color"] = this.color;
+        data["biteType"] = this.biteType;
+        data["weight"] = this.weight;
+        data["description"] = this.description;
+        data["birthdate"] = this.birthdate ? this.birthdate.toISOString() : <any>undefined;
+        data["gender"] = this.gender;
+        if (this.pictures && this.pictures.constructor === Array) {
+            data["pictures"] = [];
+            for (let item of this.pictures)
+                data["pictures"].push(item.toJSON());
+        }
+        return data; 
+    }
+}
+
+export interface IDogInfo {
+    id: number;
+    name?: string | undefined;
+    titles?: string | undefined;
+    color?: string | undefined;
+    biteType?: string | undefined;
+    weight: number;
+    description?: string | undefined;
+    birthdate: Date;
+    gender?: string | undefined;
+    pictures?: PictureInfo[] | undefined;
+}
+
+export class PictureInfo implements IPictureInfo {
+    id!: number;
+    dogID!: number;
+    fileName?: string | undefined;
+    profilePic!: boolean;
+
+    constructor(data?: IPictureInfo) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.id = data["id"];
+            this.dogID = data["dogID"];
+            this.fileName = data["fileName"];
+            this.profilePic = data["profilePic"];
+        }
+    }
+
+    static fromJS(data: any): PictureInfo {
+        data = typeof data === 'object' ? data : {};
+        let result = new PictureInfo();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["dogID"] = this.dogID;
+        data["fileName"] = this.fileName;
+        data["profilePic"] = this.profilePic;
+        return data; 
+    }
+}
+
+export interface IPictureInfo {
+    id: number;
+    dogID: number;
+    fileName?: string | undefined;
+    profilePic: boolean;
+}
+
 export class Dog implements IDog {
     id!: number;
     name?: string | undefined;
@@ -483,6 +611,7 @@ export class Picture implements IPicture {
     id!: number;
     dogID!: number;
     fileName?: string | undefined;
+    profilePic!: boolean;
     dog?: Dog | undefined;
 
     constructor(data?: IPicture) {
@@ -499,6 +628,7 @@ export class Picture implements IPicture {
             this.id = data["id"];
             this.dogID = data["dogID"];
             this.fileName = data["fileName"];
+            this.profilePic = data["profilePic"];
             this.dog = data["dog"] ? Dog.fromJS(data["dog"]) : <any>undefined;
         }
     }
@@ -515,6 +645,7 @@ export class Picture implements IPicture {
         data["id"] = this.id;
         data["dogID"] = this.dogID;
         data["fileName"] = this.fileName;
+        data["profilePic"] = this.profilePic;
         data["dog"] = this.dog ? this.dog.toJSON() : <any>undefined;
         return data; 
     }
@@ -524,6 +655,7 @@ export interface IPicture {
     id: number;
     dogID: number;
     fileName?: string | undefined;
+    profilePic: boolean;
     dog?: Dog | undefined;
 }
 

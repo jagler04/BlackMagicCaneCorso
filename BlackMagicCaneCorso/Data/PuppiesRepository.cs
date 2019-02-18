@@ -33,5 +33,9 @@ namespace BlackMagicCaneCorso.Data
         {
             return _context.Dogs.Where(d => d.Gender == gender).ToList();
         }
+        public List<Picture> GetPicturesByDogId(int dogId)
+        {
+            return _context.Pictures.Where(p => p.DogID == dogId).ToList();
+        }
     }
 }

@@ -27,8 +27,8 @@ namespace BlackMagicCaneCorso
             services.AddDbContext<DogContext>(options =>
                  options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddSingleton<Puppies>();
-            services.AddSingleton<PuppiesRepository>();
+            services.AddScoped<Puppies>();
+            services.AddScoped<PuppiesRepository>();
 
             services.AddMvc().AddJsonOptions(options =>
             {
@@ -62,12 +62,6 @@ namespace BlackMagicCaneCorso
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
-            //app.UseMvc(routes =>
-            //{
-            //    routes.MapRoute(
-            //        name: "default",
-            //        template: "{controller}/{action=Index}/{id?}");
-            //});
             app.UseMvc();
 
             app.UseSwagger();

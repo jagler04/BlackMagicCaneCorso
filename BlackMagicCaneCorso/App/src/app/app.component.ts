@@ -1,6 +1,8 @@
 import {Component, ViewChild, ElementRef, ViewEncapsulation, AfterViewInit} from '@angular/core'
 import {NavService} from './nav.service';
 import {NavItem} from './nav-item';
+import { PuppiesService } from './Services/puppies.service';
+import { DogInfo } from './Clients/PuppiesClient'
 
 @Component({
   selector: 'app-root',
@@ -10,6 +12,35 @@ import {NavItem} from './nav-item';
 })
 export class AppComponent {
   @ViewChild('appDrawer') appDrawer: ElementRef;
+  Dogs : DogInfo[];
+
+  beginningItems: NavItem[] = [{
+    displayName: 'Home',
+    iconName: 'home',
+    route: 'home'
+  },
+  {
+    displayName: 'Puppies',
+    iconName: '',
+    route: 'puppies'
+  },
+  {
+    displayName: 'Puppy Application',
+    iconName: '',
+    route: 'application'
+  }];
+  endingItems: NavItem[] = [
+    {
+      displayName: 'Breed Standard',
+      iconName: '',
+      route: 'breed'
+    },
+    {
+      displayName: 'About Us',
+      iconName: '',
+      route: 'about'
+    }
+  ]
   navItems: NavItem[] = [
     {
       displayName: 'Home',
@@ -30,55 +61,13 @@ export class AppComponent {
       displayName: 'Males',
       iconName: '',
       route: 'males',
-      children: [
-        {
-          displayName: 'All Males',
-          imgSource: '',
-          route: 'males'
-        },
-        {
-          displayName: 'Henny',
-          imgSource: 'assets/images/henny3_orig.jpg',
-          route: 'males/Henny'
-        },
-        {
-          displayName: 'Omen',
-          imgSource: '',
-          route: 'males/Omen'
-        }
-      ]
+      children: []
     },
     {
       displayName: 'Females',
       iconName: '',
       route: 'females',
-      children: [
-        {
-          displayName: 'All Females',
-          imgSource: '',
-          route: 'females'
-        },
-        {
-          displayName: 'Voodoo',
-          imgSource: 'assets/images/voo4.jpg',
-          route: 'females/Voodoo'
-        },
-        {
-          displayName: 'Koa',
-          imgSource: 'assets/images/koa3.jpg',
-          route: 'females/Koa'
-        },
-        {
-          displayName: 'Harley',
-          imgSource: 'assets/images/Harley1.jpg',
-          route: 'females/Harley'
-        },
-        {
-          displayName: 'Banshee',
-          iconName: '',
-          route: 'females/Banshee'
-        }
-      ]
+      children: []
     },
     {
       displayName: 'Breed Standard',
@@ -92,10 +81,80 @@ export class AppComponent {
     }
   ];
 
-  constructor(private navService: NavService) {
+  constructor(private navService: NavService, private puppiesService : PuppiesService) {
   }
 
+  ngOnInit(): void {
+    this.puppiesService.GetDogs().subscribe(resp => {      
+      this.Dogs = resp;
+      if(this.Dogs){
+        this.MakeNav();
+      }
+      else{
+
+      }
+      
+    });
+  }
   ngAfterViewInit() {
     this.navService.appDrawer = this.appDrawer;
+  }
+
+  private MakeNav(){
+    var males: NavItem = {
+      displayName: 'Males',
+      iconName: '',
+      route: 'males',
+      children: [
+        {
+          displayName: 'All Males',
+          imgSource: '',
+          route: 'males'
+        }
+      ]
+    };
+    var females: NavItem = {
+      displayName: 'Females',
+      iconName: '',
+      route: 'females',
+      children: [
+        {
+          displayName: 'All Females',
+          imgSource: '',
+          route: 'females'
+        }
+      ]
+    };
+    this.Dogs.forEach((dog) => {
+      console.log(dog);
+      var profileIndex = dog.pictures != undefined ? dog.pictures.findIndex(p => p.profilePic) : -1;
+      if(dog.gender === "Female"){
+        females.children.push({
+          displayName: dog.name,
+          imgSource: profileIndex != -1 ? dog.name +"/" + dog.pictures[profileIndex].fileName : "",
+          route: 'females/' + dog.name
+        })
+      }
+      else
+      {
+        males.children.push({
+          displayName: dog.name,
+          imgSource: profileIndex != -1 ? dog.name +"/" + dog.pictures[profileIndex].fileName : "",
+          route: 'males/' + dog.name
+        })
+      }
+
+    });
+
+    this.navItems = [];
+    this.beginningItems.forEach(item =>{
+      this.navItems.push(item)
+    });
+    this.navItems.push(males);
+    this.navItems.push(females);
+    this.endingItems.forEach(item => {
+      this.navItems.push(item)
+    })
+
   }
 }

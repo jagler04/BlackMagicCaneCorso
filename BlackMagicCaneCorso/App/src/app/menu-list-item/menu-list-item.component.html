@@ -2,7 +2,7 @@
    [ngClass]="{'active': item.route ? router.isActive(item.route, true): false, 'expanded': expanded}"
    class="menu-list-item">
   <mat-icon class="routeIcon" *ngIf="item.iconName">{{item.iconName}}</mat-icon>
-  <img class="imgIcon" *ngIf="item.imgSource" src="{{item.imgSource}}" />  
+  <img class="imgIcon" *ngIf="item.imgSource" src="{{'assets/images/' + item.imgSource}}" />  
   {{item.displayName}}
   <span fxFlex *ngIf="item.children && item.children.length">
     <span fxFlex></span>

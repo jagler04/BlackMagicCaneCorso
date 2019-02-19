@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {NavService} from '../nav.service';
+import {NavService} from '../Services/nav.service';
+import { PubSubService } from 'angular7-pubsub'
+import { AuthenticationService } from '../Services/authentication.service';
 
 @Component({
   selector: 'app-top-nav',
@@ -8,7 +10,14 @@ import {NavService} from '../nav.service';
 })
 export class TopNavComponent implements OnInit {
 
-  constructor(public navService: NavService) { }
+  authenticated: boolean = false;
+
+  constructor(public navService: NavService, private pubsub: PubSubService, private authService: AuthenticationService) {
+    pubsub.$sub('CheckAuthentication', () => {
+      
+    });
+  }
+
 
   ngOnInit() {
   }

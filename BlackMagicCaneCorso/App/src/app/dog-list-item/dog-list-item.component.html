@@ -6,7 +6,7 @@
     <mat-icon>photo_library</mat-icon>
   </button>
   <h2>{{Dog.name}}</h2>
-  <div ngIf="opened" (click)="OpenOrClose()">
+  <div *ngIf="opened" (click)="OpenOrClose()">
       <div><span><b>Color:</b> {{Dog.color}}</span></div>
       <div><span><b>BiteType:</b> {{Dog.biteType}}</span></div>
       <div><span><b>Weight:</b> {{Dog.weight}}</span></div>

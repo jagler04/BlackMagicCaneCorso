@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BlackMagicCaneCorso.Business;
 using BlackMagicCaneCorso.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -26,7 +27,7 @@ namespace BlackMagicCaneCorso.Controllers
             return Ok();
         }
         [Route("Add")]
-        [HttpPost]
+        [HttpPost, Authorize]
         [ProducesResponseType(typeof(List<DogInfo>), 200)]
         public IActionResult AddPuppy([FromBody] Dog newDog)
         {
@@ -34,7 +35,7 @@ namespace BlackMagicCaneCorso.Controllers
             return Ok(dogs);
         }
         [Route("Update")]
-        [HttpPost]
+        [HttpPost, Authorize]
         [ProducesResponseType(typeof(List<DogInfo>), 200)]
         public IActionResult UpdatePuppy([FromBody] Dog updateDog)
         {

@@ -1,5 +1,7 @@
 using BlackMagicCaneCorso.Business;
 using BlackMagicCaneCorso.Data;
+using BlackMagicCaneCorso.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -7,9 +9,12 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using NSwag.AspNetCore;
+using System.Text;
+
 namespace BlackMagicCaneCorso
 {
     public class Startup
@@ -29,6 +34,28 @@ namespace BlackMagicCaneCorso
 
             services.AddScoped<Puppies>();
             services.AddScoped<PuppiesRepository>();
+            services.AddScoped<Authorization>();
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingsSection);
+
+            var appSettings = appSettingsSection.Get<AppSettings>();
+            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(options =>
+                    {
+                        options.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuer = true,
+                            ValidateAudience = true,
+                            ValidateLifetime = true,
+                            ValidateIssuerSigningKey = true,
+
+                            ValidIssuer = "http://localhost:5000",
+                            ValidAudience = "http://localhost:5000",
+                            IssuerSigningKey = new SymmetricSecurityKey(key)
+                        };
+                    });
+
 
             services.AddMvc().AddJsonOptions(options =>
             {
@@ -61,6 +88,8 @@ namespace BlackMagicCaneCorso
 
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+
+            app.UseAuthentication();
 
             app.UseMvc();
 

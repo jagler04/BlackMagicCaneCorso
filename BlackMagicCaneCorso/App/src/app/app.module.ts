@@ -24,9 +24,8 @@ import {
   MatSelectModule,
   MatRadioModule,
   MatDialogModule } from '@angular/material';
-  import { PubSubModule } from 'angular7-pubsub';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 
 import { SiteDashboardComponent } from './site-dashboard/site-dashboard.component';
 import { SiteTableComponent } from './site-table/site-table.component';
@@ -50,7 +49,10 @@ import { AuthenticationService } from './Services/authentication.service';
 import { PuppiesService } from './Services/puppies.service';
 import { NavService } from './Services/nav.service';
 
-import { PuppiesClient } from './Clients/PuppiesClient';
+import { PuppiesClient, AuthClient } from './Clients/PuppiesClient';
+import { HttpConfigInterceptor} from './interceptor/httpconfig.interceptor';
+import { AuthGuard } from './guards/auth-guard.service';
+import { LoginComponent } from './login/login.component';
 
 const appRoutes: Routes = [
   { path: "", component: HomeDetailComponent },
@@ -63,7 +65,7 @@ const appRoutes: Routes = [
   { path: "breed", component: BreedStandardComponent },
   { path: "about", component: AboutUsComponent },
   { path: "application", component: PuppyApplicationComponent },
-  { path: "EditDogs", component: DogListComponent },
+  { path: "EditDogList", component: DogListComponent, canActivate: [AuthGuard] },
   { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -88,14 +90,14 @@ const appRoutes: Routes = [
     DogListItemComponent,
     EditDogDialogComponent,
     EditPicturesDialogComponent,
-    LoginDialogComponent
+    LoginDialogComponent,
+    LoginComponent
   ],
   imports: [
     RouterModule.forRoot(
       appRoutes,
       //{ enableTracing: true }  <-- debugging purposes only
     ),
-    PubSubModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpModule,
@@ -118,8 +120,16 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [NavService, PuppiesService, PuppiesClient, AuthenticationService],
+  providers: [
+    NavService,
+    PuppiesService,
+    PuppiesClient,
+    AuthClient,
+    AuthenticationService,
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
-  entryComponents: [ImageDialogComponent]
+  entryComponents: [ImageDialogComponent, EditDogDialogComponent, EditPicturesDialogComponent, LoginDialogComponent]
 })
 export class AppModule { }

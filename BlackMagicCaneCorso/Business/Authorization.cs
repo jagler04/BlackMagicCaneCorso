@@ -40,8 +40,8 @@ namespace BlackMagicCaneCorso.Business
                     var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
                     var tokeOptions = new JwtSecurityToken(
-                        issuer: "http://localhost:5000",
-                        audience: "http://localhost:5000",
+                        issuer: "http://localhost",
+                        audience: "http://localhost",
                         claims: new List<Claim>(),
                         expires: DateTime.Now.AddMinutes(5),
                         signingCredentials: signinCredentials

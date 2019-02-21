@@ -1,5 +1,5 @@
 import {Component, ViewChild, ElementRef, ViewEncapsulation, AfterViewInit} from '@angular/core'
-import {NavService} from './nav.service';
+import {NavService} from './Services/nav.service';
 import {NavItem} from './nav-item';
 import { PuppiesService } from './Services/puppies.service';
 import { DogInfo } from './Clients/PuppiesClient'
@@ -122,7 +122,6 @@ export class AppComponent {
       ]
     };
     this.Dogs.forEach((dog) => {
-      console.log(dog);
       var profileIndex = dog.pictures != undefined ? dog.pictures.findIndex(p => p.profilePic) : -1;
       if(dog.gender === "Female"){
         females.children.push({

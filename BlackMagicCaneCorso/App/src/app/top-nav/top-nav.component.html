@@ -3,7 +3,7 @@
     <mat-icon>menu</mat-icon>
   </button>
   <span>Black Magic Cane Corsos</span>
-  <button *ngIf="authenticated" class="loginButton">Login</button>
-  <button *ngIf="!authenticated" class="loginButton">Logout</button>
+  <button mat-button *ngIf="!authenticated" class="loginButton" (click)="login()">Login</button>
+  <button mat-button *ngIf="authenticated" class="loginButton" (click)="logOut()">Logout</button>
   
 </mat-toolbar>

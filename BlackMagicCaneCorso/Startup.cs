@@ -35,6 +35,7 @@ namespace BlackMagicCaneCorso
             services.AddScoped<Puppies>();
             services.AddScoped<PuppiesRepository>();
             services.AddScoped<Authorization>();
+            services.AddScoped<AuthorizationRepository>();
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
 
@@ -50,8 +51,8 @@ namespace BlackMagicCaneCorso
                             ValidateLifetime = true,
                             ValidateIssuerSigningKey = true,
 
-                            ValidIssuer = "http://localhost:5000",
-                            ValidAudience = "http://localhost:5000",
+                            ValidIssuer = "http://localhost",
+                            ValidAudience = "http://localhost",
                             IssuerSigningKey = new SymmetricSecurityKey(key)
                         };
                     });

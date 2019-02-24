@@ -17,6 +17,7 @@ namespace BlackMagicCaneCorso.Controllers
             _authorization = authorication;
         }
         [HttpPost, Route("login")]
+        [ProducesResponseType(typeof(AuthModel), 200)]
         public IActionResult Login([FromBody]LoginModel user)
         {
             try

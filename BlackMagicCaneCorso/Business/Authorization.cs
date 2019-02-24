@@ -20,7 +20,7 @@ namespace BlackMagicCaneCorso.Business
         {
             _authorizationRepository = authorizationRepository;
         }
-        public object ValudateLogin(LoginModel user)
+        public AuthModel ValudateLogin(LoginModel user)
         {
             if (user == null)
             {
@@ -48,7 +48,7 @@ namespace BlackMagicCaneCorso.Business
                     );
 
                     var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
-                    return new { Token = tokenString };
+                    return new AuthModel { Token = tokenString };
                 }
             }
             //If no account or password is incorrect, we will return nothing

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../Services/authentication.service';
 import { Router } from '@angular/router';
+import { PubSubService } from '../Services/pub-sub.service';
 
 @Component({
   selector: 'login',
@@ -12,18 +13,23 @@ export class LoginComponent implements OnInit {
   pass: string;
   invalidData: boolean = false;
 
-constructor(private authService: AuthenticationService, private router:  Router) { }
+constructor(private authService: AuthenticationService, private router:  Router,
+  private pubsub: PubSubService) {
+    pubsub.$sub("LogIn Attempt").subscribe((result) =>{
+      if(authService.IsAuthenticated){
+        this.invalidData = false;
+        this.router.navigate(["EditDogList"]);
+      }
+      else{
+        this.invalidData = true;
+      }
+    });
+  
+  }
 
   ngOnInit() {
   }
   login() {
-    this.authService.Login(this.email, this.pass).subscribe((response) =>{
-      let token = (<any>response).token;
-      localStorage.setItem("token", token);
-      this.invalidData = false;
-      this.router.navigate(["EditDogList"]);
-    }, (error) => {
-      
-    });
+    this.authService.Login(this.email, this.pass);
   }
 }

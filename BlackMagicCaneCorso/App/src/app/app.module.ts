@@ -53,6 +53,7 @@ import { PuppiesClient, AuthClient } from './Clients/PuppiesClient';
 import { HttpConfigInterceptor} from './interceptor/httpconfig.interceptor';
 import { AuthGuard } from './guards/auth-guard.service';
 import { LoginComponent } from './login/login.component';
+import { PubSubService } from './Services/pub-sub.service';
 
 const appRoutes: Routes = [
   { path: "", component: HomeDetailComponent },
@@ -65,7 +66,9 @@ const appRoutes: Routes = [
   { path: "breed", component: BreedStandardComponent },
   { path: "about", component: AboutUsComponent },
   { path: "application", component: PuppyApplicationComponent },
-  { path: "EditDogList", component: DogListComponent, canActivate: [AuthGuard] },
+  { path: "EditDogList", component: DogListComponent },
+  //{ path: "EditDogList", component: DogListComponent, canActivate: [AuthGuard] },
+  { path: "login", component: LoginComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -127,6 +130,8 @@ const appRoutes: Routes = [
     AuthClient,
     AuthenticationService,
     AuthGuard,
+    HttpModule,
+    PubSubService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],

@@ -1,0 +1,10 @@
+div.addButton{
+    width: 100%;
+}
+button.addButton{
+    background-color: rgb(44, 44, 44);
+    left: 95%;
+}
+.dogItem{
+    margin: 5px 10px 5px 10px;
+}

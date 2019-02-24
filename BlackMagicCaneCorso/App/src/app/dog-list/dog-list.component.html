@@ -1,9 +1,9 @@
-<mat-card>
-    <button mat-icon-button>
+<div class="addButton">
+    <button mat-icon-button class="addButton">
         <mat-icon>add</mat-icon>
-      </button>
-  <div *ngFor="let dog of Dogs">
-      <dog-list-item [Dog]="dog"></dog-list-item>
-  </div>
+    </button>
+</div>
 
-</mat-card>>
+<div *ngFor="let dog of Dogs" class="dogItem">
+    <dog-list-item [Dog]="dog"></dog-list-item>
+</div>

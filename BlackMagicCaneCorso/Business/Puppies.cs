@@ -47,14 +47,20 @@ namespace BlackMagicCaneCorso.Business
             client.Send(mail);
         }
 
-        public List<DogInfo> AddDog(Dog newDog)
+        public List<DogInfo> AddDog(DogInfo newDog)
         {
-            _puppiesRepository.AddDog(newDog);
+            _puppiesRepository.AddDog(ConvertToDog(newDog));
             return GetDogData();
         }
-        public List<DogInfo> UpdateDog(Dog updateDog)
+        public List<DogInfo> UpdateDog(DogInfo updateDog)
         {
-            _puppiesRepository.UpdateDog(updateDog);
+            _puppiesRepository.UpdateDog(ConvertToDog(updateDog));
+            return GetDogData();
+        }
+
+        public List<DogInfo> DeleteDog(DogInfo deleteDog)
+        {
+            _puppiesRepository.Delete(ConvertToDog(deleteDog));
             return GetDogData();
         }
 
@@ -99,6 +105,22 @@ namespace BlackMagicCaneCorso.Business
                 returnList.Add(info);                
             }
             return returnList;
+        }
+
+        private Dog ConvertToDog(DogInfo dog)
+        {
+            return new Dog
+            {
+                ID = dog.ID,
+                Name = dog.Name,
+                Titles = dog.Titles,
+                Color = dog.Color,
+                BiteType = dog.BiteType,
+                Birthdate = dog.Birthdate,
+                Weight = dog.Weight,
+                Description = dog.Description,
+                Gender = dog.Gender
+            };
         }
     }
 }

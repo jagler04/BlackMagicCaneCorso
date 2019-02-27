@@ -17,11 +17,13 @@ namespace BlackMagicCaneCorso.Data
         public Dog AddDog(Dog newDog)
         {
             _context.Dogs.Add(newDog);
+            _context.SaveChanges();
             return newDog;
         }
         public Dog UpdateDog(Dog updateDog)
         {
             _context.Dogs.Update(updateDog);
+            _context.SaveChanges();
             return updateDog;
         }
         public List<Dog> GetDogs()
@@ -36,6 +38,12 @@ namespace BlackMagicCaneCorso.Data
         public List<Picture> GetPicturesByDogId(int dogId)
         {
             return _context.Pictures.Where(p => p.DogID == dogId).ToList();
+        }
+
+        public void Delete(Dog dog)
+        {
+            _context.Dogs.Remove(dog);
+            _context.SaveChanges();
         }
     }
 }

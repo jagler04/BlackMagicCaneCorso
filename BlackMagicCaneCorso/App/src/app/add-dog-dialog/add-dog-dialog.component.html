@@ -1,18 +1,15 @@
-
-<mat-card-title>{{dog.name}}</mat-card-title>
-
 <mat-card-content>
+  <div><span><b>Name:</b></span><input mat-input type="text" [(ngModel)]="dog.name" /></div>
   <div><span><b>Titles:</b></span><input mat-input type="text" [(ngModel)]="dog.titles" /></div>
   <div><span><b>Color:</b></span><input mat-input type="text" [(ngModel)]="dog.color" /></div>
   <div><span><b>BiteType:</b></span><input mat-input type="text" [(ngModel)]="dog.biteType" /></div>
   <div><span><b>Weight:</b></span><input mat-input type="text" [(ngModel)]="dog.weight" /></div>
-  <!-- <div><span><b>Birthdate:</b></span><input mat-input type="text" [(ngModel)]="dog.birthdate" /></div> -->
   <div>
-      <span><b>Birthdate:</b></span>
-      <input matInput [matDatepicker]="picker" placeholder="Birthdate" [(ngModel)]="dog.birthdate"/>
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker touchUi #picker></mat-datepicker>
-    </div>
+    <span><b>Birthdate:</b></span>
+    <input matInput [matDatepicker]="picker" placeholder="Birthdate" [(ngModel)]="dog.birthdate"/>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </div>
   <div><span><b>Gender:</b></span><input mat-input type="text" [(ngModel)]="dog.gender" /></div>
 
     <mat-card-subtitle class="about">About</mat-card-subtitle>    
@@ -20,5 +17,5 @@
 </mat-card-content>
 <mat-card-footer>
   <button mat-button (click)="cancel()">Cancel</button>
-  <button mat-raised-button (click)="save()">Save</button>
+  <button mat-raised-button (click)="save()">Add</button>
 </mat-card-footer>

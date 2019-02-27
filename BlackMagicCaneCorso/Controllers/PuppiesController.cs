@@ -29,7 +29,7 @@ namespace BlackMagicCaneCorso.Controllers
         [Route("Add")]
         [HttpPost, Authorize]
         [ProducesResponseType(typeof(List<DogInfo>), 200)]
-        public IActionResult AddPuppy([FromBody] Dog newDog)
+        public IActionResult AddPuppy([FromBody] DogInfo newDog)
         {
             var dogs = _puppies.AddDog(newDog);
             return Ok(dogs);
@@ -37,10 +37,18 @@ namespace BlackMagicCaneCorso.Controllers
         [Route("Update")]
         [HttpPost, Authorize]
         [ProducesResponseType(typeof(List<DogInfo>), 200)]
-        public IActionResult UpdatePuppy([FromBody] Dog updateDog)
+        public IActionResult UpdatePuppy([FromBody] DogInfo updateDog)
         {
 
-            return Ok();
+            return Ok(_puppies.UpdateDog(updateDog));
+        }
+        [Route("Delete")]
+        [HttpDelete, Authorize]
+        [ProducesResponseType(typeof(List<DogInfo>), 200)]
+        public IActionResult DeletePuppy([FromBody] DogInfo deleteDog)
+        {
+
+            return Ok(_puppies.DeleteDog(deleteDog));
         }
         [Route("GetDogs")]
         [HttpGet]

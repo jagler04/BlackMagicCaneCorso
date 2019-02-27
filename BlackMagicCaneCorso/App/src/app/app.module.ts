@@ -23,7 +23,9 @@ import {
   MatSortModule,
   MatSelectModule,
   MatRadioModule,
-  MatDialogModule } from '@angular/material';
+  MatDialogModule,
+  MatDatepickerModule,
+  MatNativeDateModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 
@@ -54,6 +56,8 @@ import { HttpConfigInterceptor} from './interceptor/httpconfig.interceptor';
 import { AuthGuard } from './guards/auth-guard.service';
 import { LoginComponent } from './login/login.component';
 import { PubSubService } from './Services/pub-sub.service';
+import { AddDogDialogComponent } from './add-dog-dialog/add-dog-dialog.component';
+import { YesNoDialogComponent } from './yes-no-dialog/yes-no-dialog.component';
 
 const appRoutes: Routes = [
   { path: "", component: HomeDetailComponent },
@@ -94,7 +98,9 @@ const appRoutes: Routes = [
     EditDogDialogComponent,
     EditPicturesDialogComponent,
     LoginDialogComponent,
-    LoginComponent
+    LoginComponent,
+    AddDogDialogComponent,
+    YesNoDialogComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -120,6 +126,8 @@ const appRoutes: Routes = [
     MatDialogModule,
     MatSelectModule,
     MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     ReactiveFormsModule,
     HttpClientModule
   ],
@@ -135,6 +143,12 @@ const appRoutes: Routes = [
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ImageDialogComponent, EditDogDialogComponent, EditPicturesDialogComponent, LoginDialogComponent]
+  entryComponents: [
+    ImageDialogComponent,
+    EditDogDialogComponent,
+    EditPicturesDialogComponent,
+    AddDogDialogComponent,
+    LoginDialogComponent,
+    YesNoDialogComponent]
 })
 export class AppModule { }

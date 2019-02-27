@@ -5,3 +5,6 @@ div.editButtons{
 button.editButtons{
     float: right;
 }
+mat-card-title:hover, mat-card-content:hover {
+    cursor: pointer;
+}

@@ -18,7 +18,7 @@ namespace BlackMagicCaneCorso.Controllers
         [Route("Add")]
         [HttpPost, Authorize]
         [ProducesResponseType(typeof(List<PictureInfo>), 200)]
-        public IActionResult DeleteImage([FromBody] IFormFile file, DogInfo dog)
+        public IActionResult AddImage([FromBody] IFormFile file, DogInfo dog)
         {
             return Ok(_pictureBusiness.AddImage(dog, file));
         }

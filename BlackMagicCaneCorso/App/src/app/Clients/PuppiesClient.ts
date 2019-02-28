@@ -88,7 +88,7 @@ export class PictureClient {
         this.baseUrl = baseUrl ? baseUrl : "";
     }
 
-    deleteImageAll(file: FileParameter, iD: number | undefined, name: string | null | undefined, titles: string | null | undefined, color: string | null | undefined, biteType: string | null | undefined, weight: number | undefined, description: string | null | undefined, birthdate: Date | undefined, gender: string | null | undefined, pictures: PictureInfo[] | null | undefined): Observable<PictureInfo[] | null> {
+    addImage(file: FileParameter, iD: number | undefined, name: string | null | undefined, titles: string | null | undefined, color: string | null | undefined, biteType: string | null | undefined, weight: number | undefined, description: string | null | undefined, birthdate: Date | undefined, gender: string | null | undefined, pictures: PictureInfo[] | null | undefined): Observable<PictureInfo[] | null> {
         let url_ = this.baseUrl + "/Picture/Add?";
         if (iD === null)
             throw new Error("The parameter 'iD' cannot be null.");
@@ -136,11 +136,11 @@ export class PictureClient {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteImageAll(response_);
+            return this.processAddImage(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteImageAll(<any>response_);
+                    return this.processAddImage(<any>response_);
                 } catch (e) {
                     return <Observable<PictureInfo[] | null>><any>_observableThrow(e);
                 }
@@ -149,7 +149,7 @@ export class PictureClient {
         }));
     }
 
-    protected processDeleteImageAll(response: HttpResponseBase): Observable<PictureInfo[] | null> {
+    protected processAddImage(response: HttpResponseBase): Observable<PictureInfo[] | null> {
         const status = response.status;
         const responseBlob = 
             response instanceof HttpResponse ? response.body : 
@@ -567,7 +567,7 @@ export class PuppiesClient {
 }
 
 export class AuthModel implements IAuthModel {
-    token?: string | undefined;
+    token!: string | undefined;
 
     constructor(data?: IAuthModel) {
         if (data) {
@@ -597,14 +597,18 @@ export class AuthModel implements IAuthModel {
         return data; 
     }
 }
+export interface FileParameter{
+    data: any;
+    fileName: string;
+}
 
 export interface IAuthModel {
-    token?: string | undefined;
+    token: string | undefined;
 }
 
 export class LoginModel implements ILoginModel {
-    email?: string | undefined;
-    password?: string | undefined;
+    email!: string | undefined;
+    password!: string | undefined;
 
     constructor(data?: ILoginModel) {
         if (data) {
@@ -638,14 +642,14 @@ export class LoginModel implements ILoginModel {
 }
 
 export interface ILoginModel {
-    email?: string | undefined;
-    password?: string | undefined;
+    email: string | undefined;
+    password: string | undefined;
 }
 
 export class PictureInfo implements IPictureInfo {
     id!: number;
     dogID!: number;
-    fileName?: string | undefined;
+    fileName!: string | undefined;
     profilePic!: boolean;
 
     constructor(data?: IPictureInfo) {
@@ -686,30 +690,30 @@ export class PictureInfo implements IPictureInfo {
 export interface IPictureInfo {
     id: number;
     dogID: number;
-    fileName?: string | undefined;
+    fileName: string | undefined;
     profilePic: boolean;
 }
 
 export class RegistrationForm implements IRegistrationForm {
-    firstName?: string | undefined;
-    lastName?: string | undefined;
-    street?: string | undefined;
-    street2?: string | undefined;
-    city?: string | undefined;
-    state?: string | undefined;
-    country?: string | undefined;
-    zip?: string | undefined;
-    email?: string | undefined;
-    phone?: string | undefined;
+    firstName!: string | undefined;
+    lastName!: string | undefined;
+    street!: string | undefined;
+    street2!: string | undefined;
+    city!: string | undefined;
+    state!: string | undefined;
+    country!: string | undefined;
+    zip!: string | undefined;
+    email!: string | undefined;
+    phone!: string | undefined;
     pronunciation!: boolean;
-    companyHome?: string | undefined;
-    preferedGender?: string | undefined;
-    showCompetition?: string | undefined;
-    agilityCompetition?: string | undefined;
-    therapyDog?: string | undefined;
-    emotionalSupport?: string | undefined;
-    breeding?: string | undefined;
-    couchBuddy?: string | undefined;
+    companyHome!: string | undefined;
+    preferedGender!: string | undefined;
+    showCompetition!: string | undefined;
+    agilityCompetition!: string | undefined;
+    therapyDog!: string | undefined;
+    emotionalSupport!: string | undefined;
+    breeding!: string | undefined;
+    couchBuddy!: string | undefined;
 
     constructor(data?: IRegistrationForm) {
         if (data) {
@@ -777,38 +781,38 @@ export class RegistrationForm implements IRegistrationForm {
 }
 
 export interface IRegistrationForm {
-    firstName?: string | undefined;
-    lastName?: string | undefined;
-    street?: string | undefined;
-    street2?: string | undefined;
-    city?: string | undefined;
-    state?: string | undefined;
-    country?: string | undefined;
-    zip?: string | undefined;
-    email?: string | undefined;
-    phone?: string | undefined;
+    firstName: string | undefined;
+    lastName: string | undefined;
+    street: string | undefined;
+    street2: string | undefined;
+    city: string | undefined;
+    state: string | undefined;
+    country: string | undefined;
+    zip: string | undefined;
+    email: string | undefined;
+    phone: string | undefined;
     pronunciation: boolean;
-    companyHome?: string | undefined;
-    preferedGender?: string | undefined;
-    showCompetition?: string | undefined;
-    agilityCompetition?: string | undefined;
-    therapyDog?: string | undefined;
-    emotionalSupport?: string | undefined;
-    breeding?: string | undefined;
-    couchBuddy?: string | undefined;
+    companyHome: string | undefined;
+    preferedGender: string | undefined;
+    showCompetition: string | undefined;
+    agilityCompetition: string | undefined;
+    therapyDog: string | undefined;
+    emotionalSupport: string | undefined;
+    breeding: string | undefined;
+    couchBuddy: string | undefined;
 }
 
 export class DogInfo implements IDogInfo {
     id!: number;
-    name?: string | undefined;
-    titles?: string | undefined;
-    color?: string | undefined;
-    biteType?: string | undefined;
+    name!: string | undefined;
+    titles!: string | undefined;
+    color!: string | undefined;
+    biteType!: string | undefined;
     weight!: number;
-    description?: string | undefined;
+    description!: string | undefined;
     birthdate!: Date;
-    gender?: string | undefined;
-    pictures?: PictureInfo[] | undefined;
+    gender!: string | undefined;
+    pictures!: PictureInfo[] | undefined;
 
     constructor(data?: IDogInfo) {
         if (data) {
@@ -867,15 +871,15 @@ export class DogInfo implements IDogInfo {
 
 export interface IDogInfo {
     id: number;
-    name?: string | undefined;
-    titles?: string | undefined;
-    color?: string | undefined;
-    biteType?: string | undefined;
+    name: string | undefined;
+    titles: string | undefined;
+    color: string | undefined;
+    biteType: string | undefined;
     weight: number;
-    description?: string | undefined;
+    description: string | undefined;
     birthdate: Date;
-    gender?: string | undefined;
-    pictures?: PictureInfo[] | undefined;
+    gender: string | undefined;
+    pictures: PictureInfo[] | undefined;
 }
 
 export class SwaggerException extends Error {

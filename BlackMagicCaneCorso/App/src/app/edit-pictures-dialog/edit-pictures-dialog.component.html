@@ -1,3 +1,15 @@
-<p>
-  edit-pictures-dialog works!
-</p>
+<mat-card>
+  <mat-card-content>
+    <div ngFor="let img of dog.pictures"><edit-picture-dialog-item [picture]="img"></edit-picture-dialog-item></div>
+    <div>
+      <mat-card>
+        <mat-card-content>
+          <input type="file" (change)="onFileChange($event)" />
+          <button mat-icon-button (click)="AddPicture()">
+            <mat-icon>highlight_off</mat-icon>
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </mat-card-content>
+</mat-card>

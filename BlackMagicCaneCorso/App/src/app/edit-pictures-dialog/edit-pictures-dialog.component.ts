@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { DogInfo } from '../Clients/PuppiesClient';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { PuppiesService } from '../Services/puppies.service';
+
+export interface editDialogData{
+  dogData: DogInfo;
+}
 
 @Component({
   selector: 'app-edit-pictures-dialog',
@@ -7,7 +14,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditPicturesDialogComponent implements OnInit {
 
-  constructor() { }
+  dog:DogInfo;
+  constructor(
+    public dialogRef: MatDialogRef<EditPicturesDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: editDialogData,
+    private puppies: PuppiesService) {
+      this.dog = data.dogData;
+    }
 
   ngOnInit() {
   }

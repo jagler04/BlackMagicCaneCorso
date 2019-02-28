@@ -36,6 +36,8 @@ namespace BlackMagicCaneCorso
             services.AddScoped<PuppiesRepository>();
             services.AddScoped<Authorization>();
             services.AddScoped<AuthorizationRepository>();
+            services.AddScoped<PictureBusiness>();
+            services.AddScoped<PictureRepository>();
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
 

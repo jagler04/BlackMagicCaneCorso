@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using BlackMagicCaneCorso.Business;
 using BlackMagicCaneCorso.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace BlackMagicCaneCorso.Controllers
 {
@@ -50,6 +47,7 @@ namespace BlackMagicCaneCorso.Controllers
 
             return Ok(_puppies.DeleteDog(deleteDog));
         }
+
         [Route("GetDogs")]
         [HttpGet]
         [ProducesResponseType(typeof(List<DogInfo>), 200)]

@@ -78,6 +78,161 @@ export class AuthClient {
 }
 
 @Injectable()
+export class PictureClient {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ? baseUrl : "";
+    }
+
+    deleteImageAll(file: FileParameter, iD: number | undefined, name: string | null | undefined, titles: string | null | undefined, color: string | null | undefined, biteType: string | null | undefined, weight: number | undefined, description: string | null | undefined, birthdate: Date | undefined, gender: string | null | undefined, pictures: PictureInfo[] | null | undefined): Observable<PictureInfo[] | null> {
+        let url_ = this.baseUrl + "/Picture/Add?";
+        if (iD === null)
+            throw new Error("The parameter 'iD' cannot be null.");
+        else if (iD !== undefined)
+            url_ += "ID=" + encodeURIComponent("" + iD) + "&"; 
+        if (name !== undefined)
+            url_ += "Name=" + encodeURIComponent("" + name) + "&"; 
+        if (titles !== undefined)
+            url_ += "Titles=" + encodeURIComponent("" + titles) + "&"; 
+        if (color !== undefined)
+            url_ += "Color=" + encodeURIComponent("" + color) + "&"; 
+        if (biteType !== undefined)
+            url_ += "BiteType=" + encodeURIComponent("" + biteType) + "&"; 
+        if (weight === null)
+            throw new Error("The parameter 'weight' cannot be null.");
+        else if (weight !== undefined)
+            url_ += "Weight=" + encodeURIComponent("" + weight) + "&"; 
+        if (description !== undefined)
+            url_ += "Description=" + encodeURIComponent("" + description) + "&"; 
+        if (birthdate === null)
+            throw new Error("The parameter 'birthdate' cannot be null.");
+        else if (birthdate !== undefined)
+            url_ += "Birthdate=" + encodeURIComponent(birthdate ? "" + birthdate.toJSON() : "") + "&"; 
+        if (gender !== undefined)
+            url_ += "Gender=" + encodeURIComponent("" + gender) + "&"; 
+        if (pictures !== undefined)
+            pictures && pictures.forEach((item, index) => { 
+                for (let attr in item)
+        			if (item.hasOwnProperty(attr)) {
+        				url_ += "Pictures[" + index + "]." + attr + "=" + encodeURIComponent("" + (<any>item)[attr]) + "&";
+        			}
+            });
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(file);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processDeleteImageAll(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDeleteImageAll(<any>response_);
+                } catch (e) {
+                    return <Observable<PictureInfo[] | null>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<PictureInfo[] | null>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processDeleteImageAll(response: HttpResponseBase): Observable<PictureInfo[] | null> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (resultData200 && resultData200.constructor === Array) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(PictureInfo.fromJS(item));
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PictureInfo[] | null>(<any>null);
+    }
+
+    deleteImage(img: PictureInfo): Observable<PictureInfo[] | null> {
+        let url_ = this.baseUrl + "/Picture/Delete";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(img);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processDeleteImage(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDeleteImage(<any>response_);
+                } catch (e) {
+                    return <Observable<PictureInfo[] | null>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<PictureInfo[] | null>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processDeleteImage(response: HttpResponseBase): Observable<PictureInfo[] | null> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (resultData200 && resultData200.constructor === Array) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(PictureInfo.fromJS(item));
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PictureInfo[] | null>(<any>null);
+    }
+}
+
+@Injectable()
 export class PuppiesClient {
     private http: HttpClient;
     private baseUrl: string;
@@ -487,6 +642,54 @@ export interface ILoginModel {
     password?: string | undefined;
 }
 
+export class PictureInfo implements IPictureInfo {
+    id!: number;
+    dogID!: number;
+    fileName?: string | undefined;
+    profilePic!: boolean;
+
+    constructor(data?: IPictureInfo) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.id = data["id"];
+            this.dogID = data["dogID"];
+            this.fileName = data["fileName"];
+            this.profilePic = data["profilePic"];
+        }
+    }
+
+    static fromJS(data: any): PictureInfo {
+        data = typeof data === 'object' ? data : {};
+        let result = new PictureInfo();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["dogID"] = this.dogID;
+        data["fileName"] = this.fileName;
+        data["profilePic"] = this.profilePic;
+        return data; 
+    }
+}
+
+export interface IPictureInfo {
+    id: number;
+    dogID: number;
+    fileName?: string | undefined;
+    profilePic: boolean;
+}
+
 export class RegistrationForm implements IRegistrationForm {
     firstName?: string | undefined;
     lastName?: string | undefined;
@@ -673,54 +876,6 @@ export interface IDogInfo {
     birthdate: Date;
     gender?: string | undefined;
     pictures?: PictureInfo[] | undefined;
-}
-
-export class PictureInfo implements IPictureInfo {
-    id!: number;
-    dogID!: number;
-    fileName?: string | undefined;
-    profilePic!: boolean;
-
-    constructor(data?: IPictureInfo) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(data?: any) {
-        if (data) {
-            this.id = data["id"];
-            this.dogID = data["dogID"];
-            this.fileName = data["fileName"];
-            this.profilePic = data["profilePic"];
-        }
-    }
-
-    static fromJS(data: any): PictureInfo {
-        data = typeof data === 'object' ? data : {};
-        let result = new PictureInfo();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["dogID"] = this.dogID;
-        data["fileName"] = this.fileName;
-        data["profilePic"] = this.profilePic;
-        return data; 
-    }
-}
-
-export interface IPictureInfo {
-    id: number;
-    dogID: number;
-    fileName?: string | undefined;
-    profilePic: boolean;
 }
 
 export class SwaggerException extends Error {

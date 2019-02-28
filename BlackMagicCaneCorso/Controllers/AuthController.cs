@@ -29,7 +29,7 @@ namespace BlackMagicCaneCorso.Controllers
                     return Unauthorized();
                     
             }
-            catch(Exception ex)
+            catch
             {
                 return BadRequest("Invalid client request");
             }

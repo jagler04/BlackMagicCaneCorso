@@ -1,7 +1,9 @@
 ﻿using BlackMagicCaneCorso.Data;
 using BlackMagicCaneCorso.Models;
+using BlackMagicCaneCorso.Utilities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -12,9 +14,11 @@ namespace BlackMagicCaneCorso.Business
     public class Puppies
     {
         private readonly PuppiesRepository _puppiesRepository;
-        public Puppies(PuppiesRepository puppiesRepository)
+        private readonly PictureBusiness _pictureBusiness;
+        public Puppies(PuppiesRepository puppiesRepository, PictureBusiness pictureBusiness)
         {
             _puppiesRepository = puppiesRepository;
+            _pictureBusiness = pictureBusiness;
         }
         public void Register(RegistrationForm frm)
         {
@@ -49,20 +53,21 @@ namespace BlackMagicCaneCorso.Business
 
         public List<DogInfo> AddDog(DogInfo newDog)
         {
-            _puppiesRepository.AddDog(ConvertToDog(newDog));
+            _puppiesRepository.AddDog(Converters.ConvertToDog(newDog));
             return GetDogData();
         }
         public List<DogInfo> UpdateDog(DogInfo updateDog)
         {
-            _puppiesRepository.UpdateDog(ConvertToDog(updateDog));
+            _puppiesRepository.UpdateDog(Converters.ConvertToDog(updateDog));
             return GetDogData();
         }
 
         public List<DogInfo> DeleteDog(DogInfo deleteDog)
         {
-            _puppiesRepository.Delete(ConvertToDog(deleteDog));
+            _puppiesRepository.Delete(Converters.ConvertToDog(deleteDog));
             return GetDogData();
         }
+
 
         public List<DogInfo> GetDogs()
         {
@@ -79,48 +84,12 @@ namespace BlackMagicCaneCorso.Business
             var returnList = new List<DogInfo>();
             foreach (var dog in dogs)
             {
-                var info = new DogInfo
-                {
-                    ID = dog.ID,
-                    Name = dog.Name,
-                    Titles = dog.Titles,
-                    Color = dog.Color,
-                    BiteType = dog.BiteType,
-                    Birthdate = dog.Birthdate,
-                    Weight = dog.Weight,
-                    Description = dog.Description,
-                    Gender = dog.Gender,
-                    Pictures = new List<PictureInfo>()
-                };
-                foreach(var pic in _puppiesRepository.GetPicturesByDogId(dog.ID))
-                {
-                    info.Pictures.Add(new PictureInfo
-                    {
-                        ID = pic.ID,
-                        DogID = pic.DogID,
-                        FileName = pic.FileName,
-                        ProfilePic = pic.ProfilePic
-                    });
-                }
+                var info = Converters.ConvertToDogInfo(dog);
+                info.Pictures = _pictureBusiness.GetImagesForId(dog.ID);
+
                 returnList.Add(info);                
             }
             return returnList;
-        }
-
-        private Dog ConvertToDog(DogInfo dog)
-        {
-            return new Dog
-            {
-                ID = dog.ID,
-                Name = dog.Name,
-                Titles = dog.Titles,
-                Color = dog.Color,
-                BiteType = dog.BiteType,
-                Birthdate = dog.Birthdate,
-                Weight = dog.Weight,
-                Description = dog.Description,
-                Gender = dog.Gender
-            };
         }
     }
 }

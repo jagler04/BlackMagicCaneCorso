@@ -58,6 +58,7 @@ import { LoginComponent } from './login/login.component';
 import { PubSubService } from './Services/pub-sub.service';
 import { AddDogDialogComponent } from './add-dog-dialog/add-dog-dialog.component';
 import { YesNoDialogComponent } from './yes-no-dialog/yes-no-dialog.component';
+import { EditPictureDialogItemComponent } from './edit-picture-dialog-item/edit-picture-dialog-item.component';
 
 const appRoutes: Routes = [
   { path: "", component: HomeDetailComponent },
@@ -100,7 +101,8 @@ const appRoutes: Routes = [
     LoginDialogComponent,
     LoginComponent,
     AddDogDialogComponent,
-    YesNoDialogComponent
+    YesNoDialogComponent,
+    EditPictureDialogItemComponent
   ],
   imports: [
     RouterModule.forRoot(

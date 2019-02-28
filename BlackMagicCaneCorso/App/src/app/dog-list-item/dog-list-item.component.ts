@@ -53,7 +53,6 @@ export class DogListItemComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        console.log("Yes Returned");
         this.puppyService.DeleteDog(this.Dog);
       }
     });

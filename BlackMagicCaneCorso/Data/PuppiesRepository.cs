@@ -30,16 +30,15 @@ namespace BlackMagicCaneCorso.Data
         {
             return _context.Dogs.ToList();
         }
+        public Dog GetDogById(int Id)
+        {
+            return _context.Dogs.First(d => d.ID == Id);
+        }
 
         public List<Dog> GetDogsByGender(string gender)
         {
             return _context.Dogs.Where(d => d.Gender == gender).ToList();
         }
-        public List<Picture> GetPicturesByDogId(int dogId)
-        {
-            return _context.Pictures.Where(p => p.DogID == dogId).ToList();
-        }
-
         public void Delete(Dog dog)
         {
             _context.Dogs.Remove(dog);

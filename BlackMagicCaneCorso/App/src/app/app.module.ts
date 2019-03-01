@@ -50,6 +50,7 @@ import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 import { AuthenticationService } from './Services/authentication.service';
 import { PuppiesService } from './Services/puppies.service';
 import { NavService } from './Services/nav.service';
+import { PictureService } from './Services/picture.service';
 
 import { PuppiesClient, AuthClient } from './Clients/PuppiesClient';
 import { HttpConfigInterceptor} from './interceptor/httpconfig.interceptor';
@@ -136,6 +137,7 @@ const appRoutes: Routes = [
   providers: [
     NavService,
     PuppiesService,
+    PictureService,
     PuppiesClient,
     AuthClient,
     AuthenticationService,

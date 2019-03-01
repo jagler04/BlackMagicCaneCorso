@@ -88,49 +88,25 @@ export class PictureClient {
         this.baseUrl = baseUrl ? baseUrl : "";
     }
 
-    addImage(file: FileParameter, iD: number | undefined, name: string | null | undefined, titles: string | null | undefined, color: string | null | undefined, biteType: string | null | undefined, weight: number | undefined, description: string | null | undefined, birthdate: Date | undefined, gender: string | null | undefined, pictures: PictureInfo[] | null | undefined): Observable<PictureInfo[] | null> {
+    addImage(dogId: number | undefined, dogName: string | null | undefined, file: FileParameter | null | undefined): Observable<PictureInfo[] | null> {
         let url_ = this.baseUrl + "/Picture/Add?";
-        if (iD === null)
-            throw new Error("The parameter 'iD' cannot be null.");
-        else if (iD !== undefined)
-            url_ += "ID=" + encodeURIComponent("" + iD) + "&"; 
-        if (name !== undefined)
-            url_ += "Name=" + encodeURIComponent("" + name) + "&"; 
-        if (titles !== undefined)
-            url_ += "Titles=" + encodeURIComponent("" + titles) + "&"; 
-        if (color !== undefined)
-            url_ += "Color=" + encodeURIComponent("" + color) + "&"; 
-        if (biteType !== undefined)
-            url_ += "BiteType=" + encodeURIComponent("" + biteType) + "&"; 
-        if (weight === null)
-            throw new Error("The parameter 'weight' cannot be null.");
-        else if (weight !== undefined)
-            url_ += "Weight=" + encodeURIComponent("" + weight) + "&"; 
-        if (description !== undefined)
-            url_ += "Description=" + encodeURIComponent("" + description) + "&"; 
-        if (birthdate === null)
-            throw new Error("The parameter 'birthdate' cannot be null.");
-        else if (birthdate !== undefined)
-            url_ += "Birthdate=" + encodeURIComponent(birthdate ? "" + birthdate.toJSON() : "") + "&"; 
-        if (gender !== undefined)
-            url_ += "Gender=" + encodeURIComponent("" + gender) + "&"; 
-        if (pictures !== undefined)
-            pictures && pictures.forEach((item, index) => { 
-                for (let attr in item)
-        			if (item.hasOwnProperty(attr)) {
-        				url_ += "Pictures[" + index + "]." + attr + "=" + encodeURIComponent("" + (<any>item)[attr]) + "&";
-        			}
-            });
+        if (dogId === null)
+            throw new Error("The parameter 'dogId' cannot be null.");
+        else if (dogId !== undefined)
+            url_ += "dogId=" + encodeURIComponent("" + dogId) + "&"; 
+        if (dogName !== undefined)
+            url_ += "dogName=" + encodeURIComponent("" + dogName) + "&"; 
         url_ = url_.replace(/[?&]$/, "");
 
-        const content_ = JSON.stringify(file);
+        const content_ = new FormData();
+        if (file !== null && file !== undefined)
+            content_.append("file", file.data, file.fileName ? file.fileName : "file");
 
         let options_ : any = {
             body: content_,
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
-                "Content-Type": "application/json", 
                 "Accept": "application/json"
             })
         };
@@ -597,10 +573,6 @@ export class AuthModel implements IAuthModel {
         return data; 
     }
 }
-export interface FileParameter{
-    data: any;
-    fileName: string;
-}
 
 export interface IAuthModel {
     token: string | undefined;
@@ -880,6 +852,11 @@ export interface IDogInfo {
     birthdate: Date;
     gender: string | undefined;
     pictures: PictureInfo[] | undefined;
+}
+
+export interface FileParameter {
+    data: any;
+    fileName: string;
 }
 
 export class SwaggerException extends Error {

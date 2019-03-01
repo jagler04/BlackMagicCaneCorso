@@ -34,19 +34,19 @@ namespace BlackMagicCaneCorso.Business
 
             return GetImagesForId(img.DogID);
         }
-        public List<PictureInfo> AddImage(DogInfo dog, IFormFile file)
+        public List<PictureInfo> AddImage(int dogId, string dogName, IFormFile file)
         {
             var fileName = Guid.NewGuid() +  Path.GetExtension(file.FileName);
-            if (_blobRepository.AddFile(dog.Name, file, fileName).Result)
+            if (_blobRepository.AddFile(dogName, file, fileName).Result)
             {
                 _pictureRepository.AddImage(new Picture
                 {
-                    DogID = dog.ID,
+                    DogID = dogId,
                     FileName = file.FileName,
                     ProfilePic = false
                 });
             }
-            return GetImagesForId(dog.ID);
+            return GetImagesForId(dogId);
         }
         public List<PictureInfo> GetImagesForId(int Id)
         {

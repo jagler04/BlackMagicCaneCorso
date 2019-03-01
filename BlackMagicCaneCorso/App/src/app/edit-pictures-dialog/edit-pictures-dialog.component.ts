@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DogInfo } from '../Clients/PuppiesClient';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { PuppiesService } from '../Services/puppies.service';
+import { PictureService } from '../Services/picture.service';
 
 export interface editDialogData{
   dogData: DogInfo;
@@ -18,11 +18,14 @@ export class EditPicturesDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<EditPicturesDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: editDialogData,
-    private puppies: PuppiesService) {
+    private pictureService: PictureService) {
       this.dog = data.dogData;
     }
 
   ngOnInit() {
   }
 
+  AddPicture(){
+    this.pictureService.addPicture(this.dog, )
+  }
 }

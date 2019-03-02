@@ -88,7 +88,7 @@ export class PictureClient {
         this.baseUrl = baseUrl ? baseUrl : "";
     }
 
-    addImage(dogId: number | undefined, dogName: string | null | undefined, file: FileParameter | null | undefined): Observable<PictureInfo[] | null> {
+    addImage(dogId: number | undefined, dogName: string | null | undefined, imgFile: FileParameter | null | undefined): Observable<PictureInfo[] | null> {
         let url_ = this.baseUrl + "/Picture/Add?";
         if (dogId === null)
             throw new Error("The parameter 'dogId' cannot be null.");
@@ -99,8 +99,8 @@ export class PictureClient {
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = new FormData();
-        if (file !== null && file !== undefined)
-            content_.append("file", file.data, file.fileName ? file.fileName : "file");
+        if (imgFile !== null && imgFile !== undefined)
+            content_.append("imgFile", imgFile.data, imgFile.fileName ? imgFile.fileName : "imgFile");
 
         let options_ : any = {
             body: content_,

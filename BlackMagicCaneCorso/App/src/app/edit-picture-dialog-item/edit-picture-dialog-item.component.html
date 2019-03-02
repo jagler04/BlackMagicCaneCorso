@@ -1,6 +1,6 @@
-<mat-card-content>
-  <button mat-icon-button (click)="ShowDelete()">
+<mat-card-content class="pictureCard">
+  <img class="dogPicture" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name + '/' + picture.fileName}}" />
+  <button mat-icon-button class="deleteButton" (click)="ShowDelete()">
     <mat-icon>highlight_off</mat-icon>
   </button>
-  <img src="{{'https://blackmagiccanecorso.blob.core.windows.net/webappstoragedotnet-imagecontainer/' + dog.name + '/' + picture.fileName}}" />
 </mat-card-content>

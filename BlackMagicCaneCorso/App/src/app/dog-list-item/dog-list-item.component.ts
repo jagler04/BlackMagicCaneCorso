@@ -40,7 +40,7 @@ export class DogListItemComponent implements OnInit {
   ShowPhotos(){
     //SHOW PHOTOS DIALOG
     const dialogRef = this.dialog.open(EditPicturesDialogComponent, {
-      data: {dog: this.Dog}
+      data: {dogData: this.Dog}
     });
 
     dialogRef.afterClosed().subscribe(result => {

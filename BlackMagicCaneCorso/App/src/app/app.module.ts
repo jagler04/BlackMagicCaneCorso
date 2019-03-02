@@ -52,7 +52,7 @@ import { PuppiesService } from './Services/puppies.service';
 import { NavService } from './Services/nav.service';
 import { PictureService } from './Services/picture.service';
 
-import { PuppiesClient, AuthClient } from './Clients/PuppiesClient';
+import { PuppiesClient, AuthClient, PictureClient } from './Clients/PuppiesClient';
 import { HttpConfigInterceptor} from './interceptor/httpconfig.interceptor';
 import { AuthGuard } from './guards/auth-guard.service';
 import { LoginComponent } from './login/login.component';
@@ -139,6 +139,7 @@ const appRoutes: Routes = [
     PuppiesService,
     PictureService,
     PuppiesClient,
+    PictureClient,
     AuthClient,
     AuthenticationService,
     AuthGuard,

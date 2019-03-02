@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DogInfo, FileParameter } from '../Clients/PuppiesClient';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { PictureService } from '../Services/picture.service';
+import { PubSubService } from '../Services/pub-sub.service';
 
 export interface editDialogData{
   dogData: DogInfo;
@@ -18,8 +19,18 @@ export class EditPicturesDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<EditPicturesDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: editDialogData,
-    private pictureService: PictureService) {
+    private pictureService: PictureService, private pubsub: PubSubService) {
       this.dog = data.dogData;
+      pubsub.$sub("Picture Added").subscribe(() =>{
+        this.dog.pictures = pictureService.Pictures;
+        this.selectedFiles.shift();
+        if(this.selectedFiles.length > 0){
+          this.AddPicture(this.selectedFiles[0]);
+        }
+      });
+      pubsub.$sub("Picture Deleted").subscribe(() =>{
+        this.dog.pictures = pictureService.Pictures;
+      });
     }
 
   ngOnInit() {
@@ -35,12 +46,6 @@ export class EditPicturesDialogComponent implements OnInit {
       data: file,
       fileName: file.name
     };
-    this.pictureService.addPicture(this.dog, upFile).subscribe((result) => {
-      this.dog.pictures = result;
-      this.selectedFiles.shift();
-      if(this.selectedFiles.length > 0){
-        this.AddPicture(this.selectedFiles[0]);
-      }
-    })
+    this.pictureService.addPicture(this.dog, upFile);
   }
 }

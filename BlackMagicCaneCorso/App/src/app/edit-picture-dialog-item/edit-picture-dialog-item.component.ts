@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { YesNoDialogComponent } from '../yes-no-dialog/yes-no-dialog.component';
 import { PictureInfo, DogInfo } from '../Clients/PuppiesClient';
+import { PictureService } from '../Services/picture.service';
 
 @Component({
   selector: 'edit-picture-dialog-item',
@@ -14,7 +15,8 @@ export class EditPictureDialogItemComponent implements OnInit {
   picture: PictureInfo;
   @Input()
   dog: DogInfo;
-  constructor(public dialog: MatDialog) { }
+
+  constructor(public dialog: MatDialog, private pictureService: PictureService) { }
 
   ngOnInit() {
   }
@@ -26,7 +28,7 @@ export class EditPictureDialogItemComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        
+        this.pictureService.DelegePicture(this.picture);
       }
     });
   }

@@ -16,11 +16,11 @@ namespace BlackMagicCaneCorso.Controllers
             _pictureBusiness = pictureBusiness;
         }
         [Route("Add")]
-        [HttpPost, Authorize]
+        [HttpPost]//, Authorize]
         [ProducesResponseType(typeof(List<PictureInfo>), 200)]
-        public IActionResult AddImage([FromQuery] int dogId, [FromQuery] string dogName, IFormFile file)
+        public IActionResult AddImage(int dogId, string dogName, IFormFile imgFile)
         {
-            return Ok(_pictureBusiness.AddImage(dogId, dogName, file));
+            return Ok(_pictureBusiness.AddImage(dogId, dogName, imgFile));
         }
         [Route("Delete")]
         [HttpDelete, Authorize]

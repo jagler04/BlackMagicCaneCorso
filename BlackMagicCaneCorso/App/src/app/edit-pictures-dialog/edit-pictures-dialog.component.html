@@ -1,9 +1,9 @@
 <mat-card>
   <mat-card-content>
-    <div *ngFor="let img of dog.pictures"><edit-picture-dialog-item [picture]="img" [dog]="dog"></edit-picture-dialog-item></div>
+    <div class="picCard" *ngFor="let img of dog.pictures"><edit-picture-dialog-item [picture]="img" [dog]="dog"></edit-picture-dialog-item></div>
     <div>
       <mat-card>
-        <mat-card-content>
+        <mat-card-content *ngIf="!selectedFiles && selectedFiles.length !== 0">
           <div>
             <span><b>{{selectedFiles.length}}</b> files left to upload.</span>
           </div>

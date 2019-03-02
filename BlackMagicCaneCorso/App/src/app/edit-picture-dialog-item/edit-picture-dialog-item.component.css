@@ -1,0 +1,10 @@
+.pictureCard {
+    width: 200px;
+    height: 200px;
+}
+.dogPicture {
+    width:100%;
+}
+.deleteButton{
+    float: right;
+}

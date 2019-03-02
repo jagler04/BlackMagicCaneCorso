@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { YesNoDialogComponent } from '../yes-no-dialog/yes-no-dialog.component';
-import { PictureInfo } from '../Clients/PuppiesClient';
+import { PictureInfo, DogInfo } from '../Clients/PuppiesClient';
 
 @Component({
   selector: 'edit-picture-dialog-item',
@@ -12,6 +12,8 @@ export class EditPictureDialogItemComponent implements OnInit {
 
   @Input()
   picture: PictureInfo;
+  @Input()
+  dog: DogInfo;
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {

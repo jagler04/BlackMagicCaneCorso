@@ -1,12 +1,17 @@
 <mat-card>
   <mat-card-content>
-    <div ngFor="let img of dog.pictures"><edit-picture-dialog-item [picture]="img"></edit-picture-dialog-item></div>
+    <div *ngFor="let img of dog.pictures"><edit-picture-dialog-item [picture]="img" [dog]="dog"></edit-picture-dialog-item></div>
     <div>
       <mat-card>
         <mat-card-content>
-          <input type="file" (change)="onFileChange($event)" />
-          <button mat-icon-button (click)="AddPicture()">
-            <mat-icon>highlight_off</mat-icon>
+          <div>
+            <span><b>{{selectedFiles.length}}</b> files left to upload.</span>
+          </div>
+        </mat-card-content>
+        <mat-card-content *ngIf="selectedFiles || selectedFiles.length === 0">
+          <input type="file" (change)="FileChange($event)" />
+          <button mat-icon-button>
+            <mat-icon>add_circle_outline</mat-icon>
           </button>
         </mat-card-content>
       </mat-card>

@@ -1,0 +1,32 @@
+﻿<Properties StartupConfiguration="{209902E0-F472-459E-87A6-BA68ED727DAA}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BlackMagicCaneCorso/Controllers/PuppiesController.cs">
+    <Files>
+      <File FileName="BlackMagicCaneCorso/Controllers/PuppiesController.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="BlackMagicCaneCorso" expanded="True">
+            <Node name="BlackMagicCaneCorso" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="PuppiesController.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.BlackMagicCaneCorso PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/johnagler/Documents/GitHub/BlackMagicCaneCorso/BlackMagicCaneCorso/Controllers/PuppiesController.cs" relfile="BlackMagicCaneCorso/Controllers/PuppiesController.cs" line="56" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

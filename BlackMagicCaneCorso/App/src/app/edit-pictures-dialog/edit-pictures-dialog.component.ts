@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { DogInfo } from '../Clients/PuppiesClient';
+import { DogInfo, FileParameter } from '../Clients/PuppiesClient';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { PictureService } from '../Services/picture.service';
 
@@ -13,8 +13,8 @@ export interface editDialogData{
   styleUrls: ['./edit-pictures-dialog.component.css']
 })
 export class EditPicturesDialogComponent implements OnInit {
-
-  dog:DogInfo;
+  public selectedFiles: File[] = [];
+  public dog:DogInfo;
   constructor(
     public dialogRef: MatDialogRef<EditPicturesDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: editDialogData,
@@ -24,8 +24,23 @@ export class EditPicturesDialogComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  AddPicture(){
-    this.pictureService.addPicture(this.dog, )
+  FileChange(event: any): void{
+    this.selectedFiles = event.target.files;
+    if( this.selectedFiles && this.selectedFiles.length > 0){
+      this.AddPicture(this.selectedFiles[0]);
+    }
+  }
+  AddPicture(file){
+    var upFile: FileParameter = {
+      data: file,
+      fileName: file.name
+    };
+    this.pictureService.addPicture(this.dog, upFile).subscribe((result) => {
+      this.dog.pictures = result;
+      this.selectedFiles.shift();
+      if(this.selectedFiles.length > 0){
+        this.AddPicture(this.selectedFiles[0]);
+      }
+    })
   }
 }

@@ -9,6 +9,9 @@
           </div>
         </mat-card-content>
         <mat-card-content *ngIf="selectedFiles || selectedFiles.length === 0">
+          <form (ngSubmit)="onSubmit()">
+            <input mat-icon-button type="file" name="img" multiple (change)="onFileChange($event)" #fileInput/>
+          </form>
           <input type="file" (change)="FileChange($event)" />
           <button mat-icon-button>
             <mat-icon>add_circle_outline</mat-icon>

@@ -100,14 +100,15 @@ export class PictureClient {
 
         const content_ = new FormData();
         if (imgFile !== null && imgFile !== undefined)
-            content_.append("imgFile", imgFile.data, imgFile.fileName ? imgFile.fileName : "imgFile");
+            content_.append("file", imgFile.data, imgFile.fileName ? imgFile.fileName : "imgFile");
 
         let options_ : any = {
             body: content_,
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
-                "Accept": "application/json"
+                "Accept": "application/json",
+                "Content-Type": undefined
             })
         };
 

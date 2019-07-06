@@ -24,7 +24,7 @@ namespace BlackMagicCaneCorso.Data
         {
             CloudStorageAccount cloudStorageAccount = CloudStorageAccount.Parse(_blobConnectionString);
             CloudBlobClient cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
-            CloudBlobContainer cloudBlobContainer = cloudBlobClient.GetContainerReference("appcontainer");
+            CloudBlobContainer cloudBlobContainer = cloudBlobClient.GetContainerReference(containerName.ToLower());
             if (await cloudBlobContainer.CreateIfNotExistsAsync())
             {
                 await cloudBlobContainer.SetPermissionsAsync(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
@@ -48,7 +48,7 @@ namespace BlackMagicCaneCorso.Data
         {
             CloudStorageAccount cloudStorageAccount = CloudStorageAccount.Parse(_blobConnectionString);
             CloudBlobClient cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
-            CloudBlobContainer cloudBlobContainer = cloudBlobClient.GetContainerReference("appcontainer");
+            CloudBlobContainer cloudBlobContainer = cloudBlobClient.GetContainerReference(containerName.ToLower());
 
 
             CloudBlockBlob cbb = cloudBlobContainer.GetBlockBlobReference(fileName);

@@ -27,7 +27,8 @@ namespace BlackMagicCaneCorso.Business
         public List<PictureInfo> DeleteImage(PictureInfo img)
         {
             var dog = _puppiesRepository.GetDogById(img.DogID);
-            if (_blobRepository.DeleteFile(dog.Name, img.FileName).Result)
+            var isGuid = Guid.TryParse(Path.GetFileNameWithoutExtension(img.FileName), out Guid outGuid);
+            if (_blobRepository.DeleteFile(dog.Name, img.FileName).Result || !isGuid)
             {
                 _pictureRepository.DeleteImage(Converters.ConvertToPicture(img));
             }
@@ -42,7 +43,7 @@ namespace BlackMagicCaneCorso.Business
                 _pictureRepository.AddImage(new Picture
                 {
                     DogID = dogId,
-                    FileName = file.FileName,
+                    FileName = fileName,
                     ProfilePic = false
                 });
             }

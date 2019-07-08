@@ -25,7 +25,9 @@ import {
   MatRadioModule,
   MatDialogModule,
   MatDatepickerModule,
-  MatNativeDateModule } from '@angular/material';
+  MatNativeDateModule, 
+  MatFormFieldModule,
+  MatInputModule} from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 
@@ -132,7 +134,9 @@ const appRoutes: Routes = [
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     NavService,

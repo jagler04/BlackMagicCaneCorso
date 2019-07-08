@@ -16,9 +16,9 @@ namespace BlackMagicCaneCorso.Controllers
             _pictureBusiness = pictureBusiness;
         }
         [Route("Add")]
-        [HttpPost, DisableRequestSizeLimit]//, Authorize]
+        [HttpPost, DisableRequestSizeLimit, Authorize]
         [ProducesResponseType(typeof(List<PictureInfo>), 200)]
-        public IActionResult AddImage(int dogId, string dogName)//, IFormFile imgFile)
+        public IActionResult AddImage(int dogId, string dogName)
         {
             var imgFile = Request.Form.Files[0];
             return Ok(_pictureBusiness.AddImage(dogId, dogName, imgFile));

@@ -39,7 +39,7 @@ export class EditPicturesDialogComponent implements OnInit {
   }
 
   file: any;
-  progress: number;
+  progress: number = 0;
   error: string = '';
 
   onSelectFile($event, file) {

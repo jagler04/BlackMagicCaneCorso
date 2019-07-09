@@ -7,15 +7,15 @@
   </div>
   <h2 class="summer">Puppies will be available late 2018-Spring of 2019</h2>
   <mat-card>
-    <mat-card-title>Announcements</mat-card-title>
+    <mat-card-title>Announcements/Upcoming Litters</mat-card-title>
     <mat-card-content>
-      <span>
-          Unfortunately, Voodoo x Reaper breeding did not take. We are searching for another stud and will update you all shortly.
-      </span>
+      <div *ngFor="let announcement of announcments">
+        <span>{{announcement.AnnouncementText}}</span>
+      </div>
     </mat-card-content>
   </mat-card>
   
-  <mat-card>
+  <!-- <mat-card>
     <mat-card-title>Upcoming Litters</mat-card-title>
     <mat-card-content>
       <span>
@@ -26,7 +26,7 @@
       </span>
     </mat-card-content>
   </mat-card>
-  <mat-card>
+   <mat-card>
     <mat-card-title>Waiting List</mat-card-title>
     <mat-card-subtitle>SHOW QUALITY</mat-card-subtitle>
     <mat-card-content>
@@ -53,7 +53,7 @@
           in and we can hand-select the perfect new addition for you and your family!
       </span>
     </mat-card-content>
-  </mat-card>
+  </mat-card> -->
   <div  class="bottomImg">
       <img src="assets/images/446e5fa36f52abbe90cb720f184e4cd4.jpg" (click)="viewImage('assets/images/446e5fa36f52abbe90cb720f184e4cd4.jpg')" />
   </div>

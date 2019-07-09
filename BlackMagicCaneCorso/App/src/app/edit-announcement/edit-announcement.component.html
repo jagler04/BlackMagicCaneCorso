@@ -1,0 +1,18 @@
+<mat-card>
+  <mat-card-content>
+    <div *ngFor="let announcement of Announcements">
+      <label>{{announcement.AnnouncementText}}}</label>
+      <button mat-icon-button (click)="ShowDelete(announcement.Id)" class="editButtons">
+        <mat-icon>highlight_off</mat-icon>
+      </button>
+      <button mat-icon-button (click)="ShowEdit(announcement)" class="editButtons">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>
+<mat-card>
+  <mat-card-content>
+    
+  </mat-card-content>
+</mat-card>

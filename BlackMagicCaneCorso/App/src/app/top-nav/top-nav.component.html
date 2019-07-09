@@ -3,6 +3,7 @@
     <mat-icon>menu</mat-icon>
   </button>
   <span>Black Magic Cane Corsos</span>
+  <button mat-button (click)="GotoAnnouncements()">Edit Announcements</button>
   <button mat-button *ngIf="!authenticated" class="loginButton" (click)="login()">Login</button>
   <button mat-button *ngIf="authenticated" class="loginButton" (click)="logOut()">Logout</button>
   

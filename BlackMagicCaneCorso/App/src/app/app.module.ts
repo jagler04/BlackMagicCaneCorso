@@ -62,6 +62,7 @@ import { PubSubService } from './Services/pub-sub.service';
 import { AddDogDialogComponent } from './add-dog-dialog/add-dog-dialog.component';
 import { YesNoDialogComponent } from './yes-no-dialog/yes-no-dialog.component';
 import { EditPictureDialogItemComponent } from './edit-picture-dialog-item/edit-picture-dialog-item.component';
+import { EditAnnouncementComponent } from './edit-announcement/edit-announcement.component';
 
 const appRoutes: Routes = [
   { path: "", component: HomeDetailComponent },
@@ -74,6 +75,7 @@ const appRoutes: Routes = [
   { path: "breed", component: BreedStandardComponent },
   { path: "about", component: AboutUsComponent },
   { path: "application", component: PuppyApplicationComponent },
+  { path: "EditAnnouncements", component: EditAnnouncementComponent},
   { path: "EditDogList", component: DogListComponent },
   //{ path: "EditDogList", component: DogListComponent, canActivate: [AuthGuard] },
   { path: "login", component: LoginComponent },
@@ -105,7 +107,8 @@ const appRoutes: Routes = [
     LoginComponent,
     AddDogDialogComponent,
     YesNoDialogComponent,
-    EditPictureDialogItemComponent
+    EditPictureDialogItemComponent,
+    EditAnnouncementComponent
   ],
   imports: [
     RouterModule.forRoot(

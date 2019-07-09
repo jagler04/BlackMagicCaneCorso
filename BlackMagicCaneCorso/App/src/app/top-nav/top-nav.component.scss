@@ -14,10 +14,10 @@ button mat-icon{
 mat-toolbar span {
     text-align: center;
     width: fit-content;
-    min-width: 95%;
+    margin-left: 30px;
     font-size: 22pt;
 }
 .loginButton{
     background-color: transparent;
-    right: 5%;
+    float: right;
 }

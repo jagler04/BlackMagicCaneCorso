@@ -59,5 +59,21 @@ namespace BlackMagicCaneCorso.Utilities
                 ProfilePic = pic.ProfilePic
             };
         }
+        public static AnnouncementModel ConvertToAnnouncementModel(Announcement announce)
+        {
+            return new AnnouncementModel
+            {
+                Id = announce.ID,
+                AnnouncementText = announce.AnnouncementString
+            };
+        }
+        public static Announcement ConvertToAnnouncement(AnnouncementModel announce)
+        {
+            return new Announcement
+            {
+                ID = announce.Id,
+                AnnouncementString = announce.AnnouncementText
+            };
+        }
     }
 }

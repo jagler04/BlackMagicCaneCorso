@@ -38,6 +38,9 @@ export class TopNavComponent implements OnInit {
       }
     });
   }
+  GotoAnnouncements(){
+    this.router.navigate(["EditAnnouncements"]);
+  }
   logOut() {
     this.authService.LogOut();
  }

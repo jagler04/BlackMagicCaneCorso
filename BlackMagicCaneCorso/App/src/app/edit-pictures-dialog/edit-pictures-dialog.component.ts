@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { DogInfo, FileParameter } from '../Clients/PuppiesClient';
+import { DogInfo } from '../Clients/PuppiesClient';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { PictureService } from '../Services/picture.service';
 import { PubSubService } from '../Services/pub-sub.service';

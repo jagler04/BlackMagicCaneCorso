@@ -1,0 +1,13 @@
+<mat-card>
+  <mat-card-content>
+    <form>
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Announcement" #announcementInput></textarea>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-footer>
+    <button mat-button (click)="Cancel()">Cancel</button>
+    <button mat-raised-button (click)="Add(announcementInput.value)">Add</button>
+  </mat-card-footer>
+</mat-card>>

@@ -54,7 +54,7 @@ import { PuppiesService } from './Services/puppies.service';
 import { NavService } from './Services/nav.service';
 import { PictureService } from './Services/picture.service';
 
-import { PuppiesClient, AuthClient, PictureClient } from './Clients/PuppiesClient';
+import { PuppiesClient, AuthClient, PictureClient, AnnouncementClient } from './Clients/PuppiesClient';
 import { HttpConfigInterceptor} from './interceptor/httpconfig.interceptor';
 import { AuthGuard } from './guards/auth-guard.service';
 import { LoginComponent } from './login/login.component';
@@ -63,6 +63,8 @@ import { AddDogDialogComponent } from './add-dog-dialog/add-dog-dialog.component
 import { YesNoDialogComponent } from './yes-no-dialog/yes-no-dialog.component';
 import { EditPictureDialogItemComponent } from './edit-picture-dialog-item/edit-picture-dialog-item.component';
 import { EditAnnouncementComponent } from './edit-announcement/edit-announcement.component';
+import { AddAnnouncementDialogComponent } from './add-announcement-dialog/add-announcement-dialog.component';
+import { AnnouncementService } from './announcement.service';
 
 const appRoutes: Routes = [
   { path: "", component: HomeDetailComponent },
@@ -108,7 +110,8 @@ const appRoutes: Routes = [
     AddDogDialogComponent,
     YesNoDialogComponent,
     EditPictureDialogItemComponent,
-    EditAnnouncementComponent
+    EditAnnouncementComponent,
+    AddAnnouncementDialogComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -152,6 +155,8 @@ const appRoutes: Routes = [
     AuthGuard,
     HttpModule,
     PubSubService,
+    AnnouncementService,
+    AnnouncementClient,
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
@@ -161,6 +166,7 @@ const appRoutes: Routes = [
     EditPicturesDialogComponent,
     AddDogDialogComponent,
     LoginDialogComponent,
-    YesNoDialogComponent]
+    YesNoDialogComponent,
+    AddAnnouncementDialogComponent]
 })
 export class AppModule { }

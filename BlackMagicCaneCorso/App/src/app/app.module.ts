@@ -65,6 +65,7 @@ import { EditPictureDialogItemComponent } from './edit-picture-dialog-item/edit-
 import { EditAnnouncementComponent } from './edit-announcement/edit-announcement.component';
 import { AddAnnouncementDialogComponent } from './add-announcement-dialog/add-announcement-dialog.component';
 import { AnnouncementService } from './announcement.service';
+import { UpdateAnnouncementComponent } from './update-announcement/update-announcement.component';
 
 const appRoutes: Routes = [
   { path: "", component: HomeDetailComponent },
@@ -111,7 +112,8 @@ const appRoutes: Routes = [
     YesNoDialogComponent,
     EditPictureDialogItemComponent,
     EditAnnouncementComponent,
-    AddAnnouncementDialogComponent
+    AddAnnouncementDialogComponent,
+    UpdateAnnouncementComponent
   ],
   imports: [
     RouterModule.forRoot(

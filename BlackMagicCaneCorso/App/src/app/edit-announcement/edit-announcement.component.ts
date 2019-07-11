@@ -3,6 +3,7 @@ import { AnnouncementService } from '../announcement.service';
 import { MatDialog } from '@angular/material';
 import { AddAnnouncementDialogComponent } from '../add-announcement-dialog/add-announcement-dialog.component';
 import { AnnouncementModel } from '../Clients/PuppiesClient';
+import { UpdateAnnouncementComponent } from '../update-announcement/update-announcement.component';
 
 @Component({
   selector: 'app-edit-announcement',
@@ -25,6 +26,16 @@ export class EditAnnouncementComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result !== undefined){
+        this.service.Add(result).subscribe(result => { this.Announcements = result;});
+      }
+    });
+  }
+  public ShowUpdateDialog(announcement: AnnouncementModel){
+    const dialogRef = this.dialog.open(UpdateAnnouncementComponent, {data: announcement.announcementText});
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result !== announcement.announcementText){
+        this.service.Update(announcement.id, result).subscribe(result => { this.Announcements = result;});
         this.service.Add(result).subscribe(result => { this.Announcements = result;});
       }
     });

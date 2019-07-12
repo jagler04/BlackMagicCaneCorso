@@ -41,6 +41,9 @@ export class TopNavComponent implements OnInit {
   GotoAnnouncements(){
     this.router.navigate(["EditAnnouncements"]);
   }
+  GotoDogs(){
+    this.router.navigate(["EditDogList"]);
+  }
   logOut() {
     this.authService.LogOut();
  }

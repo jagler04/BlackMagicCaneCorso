@@ -5,12 +5,12 @@
       <img class="middle" src="assets/images/IMG_1053.JPG.jpg" (click)="viewImage('assets/images/IMG_1053.JPG.jpg')" />
       <img class="last" src="assets/images/IMG_1054.JPG.jpg" (click)="viewImage('assets/images/IMG_1054.JPG.jpg')" />
   </div>
-  <h2 class="summer">Puppies will be available late 2018-Spring of 2019</h2>
+  <!-- <h2 class="summer">Puppies will be available late 2018-Spring of 2019</h2> -->
   <mat-card>
     <mat-card-title>Announcements/Upcoming Litters</mat-card-title>
     <mat-card-content>
       <div *ngFor="let announcement of announcments">
-        <span>{{announcement.AnnouncementText}}</span>
+        <span>{{announcement.announcementText}}</span>
       </div>
     </mat-card-content>
   </mat-card>

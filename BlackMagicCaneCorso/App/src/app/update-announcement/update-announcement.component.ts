@@ -7,10 +7,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./update-announcement.component.css']
 })
 export class UpdateAnnouncementComponent implements OnInit {
- @ViewChild("announcementInput") 
- inputText: ElementRef;
+  inputText: string;
   constructor(public dialogRef: MatDialogRef<UpdateAnnouncementComponent>, 
-    @Inject(MAT_DIALOG_DATA) public data: string) { this.inputText.nativeElement.value = data; }
+    @Inject(MAT_DIALOG_DATA) public data: string) { this.inputText = data; }
 
   ngOnInit() {
   }

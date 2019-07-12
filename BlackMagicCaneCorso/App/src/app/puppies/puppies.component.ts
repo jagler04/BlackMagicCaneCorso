@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material';
 import { ImageDialogComponent } from '../image-dialog/image-dialog.component'
+import { AnnouncementService } from '../announcement.service';
+import { AnnouncementModel } from '../Clients/PuppiesClient';
 
 @Component({
   selector: 'app-puppies',
@@ -8,10 +10,11 @@ import { ImageDialogComponent } from '../image-dialog/image-dialog.component'
   styleUrls: ['./puppies.component.scss']
 })
 export class PuppiesComponent implements OnInit {
-
-  constructor(public dialog: MatDialog) { }
+  announcments: AnnouncementModel[];
+  constructor(public dialog: MatDialog, private announcementService: AnnouncementService) { }
 
   ngOnInit() {
+    this.announcementService.Get().subscribe(result => {this.announcments = result;});
   }
   viewImage(imgURL: string) {
     const dialogRef = this.dialog.open(ImageDialogComponent, {

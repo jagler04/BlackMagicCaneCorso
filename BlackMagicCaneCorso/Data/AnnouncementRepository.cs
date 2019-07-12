@@ -44,7 +44,11 @@ namespace BlackMagicCaneCorso.Data
         {
             var announce = _context.Announcements.FirstOrDefault(a => a.ID == announcementId);
             if(announce != null)
+            {
                 _context.Announcements.Remove(announce);
+                _context.SaveChanges();
+            }
+                
         }
     }
 }

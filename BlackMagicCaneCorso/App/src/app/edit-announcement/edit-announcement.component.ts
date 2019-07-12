@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material';
 import { AddAnnouncementDialogComponent } from '../add-announcement-dialog/add-announcement-dialog.component';
 import { AnnouncementModel } from '../Clients/PuppiesClient';
 import { UpdateAnnouncementComponent } from '../update-announcement/update-announcement.component';
+import { YesNoDialogComponent } from '../yes-no-dialog/yes-no-dialog.component';
 
 @Component({
   selector: 'app-edit-announcement',
@@ -30,14 +31,23 @@ export class EditAnnouncementComponent implements OnInit {
       }
     });
   }
-  public ShowUpdateDialog(announcement: AnnouncementModel){
+  public ShowEditDialog(announcement: AnnouncementModel){
     const dialogRef = this.dialog.open(UpdateAnnouncementComponent, {data: announcement.announcementText});
 
     dialogRef.afterClosed().subscribe(result => {
       if(result !== announcement.announcementText){
         this.service.Update(announcement.id, result).subscribe(result => { this.Announcements = result;});
-        this.service.Add(result).subscribe(result => { this.Announcements = result;});
+        //this.service.Add(result).subscribe(result => { this.Announcements = result;});
       }
     });
+  }
+  ShowDelete(id: number){
+    const dialogRef = this.dialog.open(YesNoDialogComponent, {data: {message: "Are you sure you wish to delete this announcement?"}});
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.service.Delete(id).subscribe(result => { this.Announcements = result;});
+        //this.service.Add(result).subscribe(result => { this.Announcements = result;});
+      }
+    })
   }
 }

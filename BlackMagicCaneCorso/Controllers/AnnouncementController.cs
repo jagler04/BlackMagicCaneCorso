@@ -20,7 +20,7 @@ namespace BlackMagicCaneCorso.Controllers
             _announcementBusiness = announcementBusiness;
         }
         [Route("Add")]
-        [HttpPost]//, Authorize]
+        [HttpPost, Authorize]
         [ProducesResponseType(typeof(List<AnnouncementModel>), 200)]
         public IActionResult AddAnnouncement(string announcementText)
         {
@@ -35,7 +35,7 @@ namespace BlackMagicCaneCorso.Controllers
             
         }
         [Route("Update")]
-        [HttpPut]//, Authorize]
+        [HttpPut, Authorize]
         [ProducesResponseType(typeof(List<AnnouncementModel>), 200)]
         public IActionResult UpdateAnnouncement(int id, string announcementText)
         {
@@ -65,7 +65,7 @@ namespace BlackMagicCaneCorso.Controllers
 
         }
         [Route("Delete")]
-        [HttpDelete]//, Authorize]
+        [HttpDelete, Authorize]
         [ProducesResponseType(typeof(List<AnnouncementModel>), 200)]
         public IActionResult DeleteAnnouncement(int id)
         {

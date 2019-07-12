@@ -18,4 +18,7 @@ export class AnnouncementService {
   public Update(id: number, updateText: string) : Observable<AnnouncementModel[]>{
     return this.client.updateAnnouncement(id, updateText);
   }
+  public Delete(id: number) : Observable<AnnouncementModel[] | null> {
+    return this.client.deleteAnnouncement(id);
+  }
 }

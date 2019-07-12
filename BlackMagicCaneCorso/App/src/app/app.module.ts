@@ -78,9 +78,8 @@ const appRoutes: Routes = [
   { path: "breed", component: BreedStandardComponent },
   { path: "about", component: AboutUsComponent },
   { path: "application", component: PuppyApplicationComponent },
-  { path: "EditAnnouncements", component: EditAnnouncementComponent},
-  { path: "EditDogList", component: DogListComponent },
-  //{ path: "EditDogList", component: DogListComponent, canActivate: [AuthGuard] },
+  { path: "EditAnnouncements", component: EditAnnouncementComponent, canActivate: [AuthGuard]},
+  { path: "EditDogList", component: DogListComponent, canActivate: [AuthGuard] },
   { path: "login", component: LoginComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
@@ -169,6 +168,7 @@ const appRoutes: Routes = [
     AddDogDialogComponent,
     LoginDialogComponent,
     YesNoDialogComponent,
-    AddAnnouncementDialogComponent]
+    AddAnnouncementDialogComponent,
+  UpdateAnnouncementComponent]
 })
 export class AppModule { }

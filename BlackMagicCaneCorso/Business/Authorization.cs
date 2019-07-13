@@ -29,7 +29,8 @@ namespace BlackMagicCaneCorso.Business
             var account = _authorizationRepository.GetAccount(user.Email);
             if (account != null)
             {
-                if(user.Password == Security.Decrypt(account.Password))
+                //var test = Security.Decrypt(account.Password);
+                if (user.Password == Security.Decrypt(account.Password))
                 {
                     //var appSettingsSection = Application. Configuration.GetSection("AppSettings");
 
@@ -43,7 +44,7 @@ namespace BlackMagicCaneCorso.Business
                         issuer: "http://localhost",
                         audience: "http://localhost",
                         claims: new List<Claim>(),
-                        expires: DateTime.Now.AddMinutes(5),
+                        expires: DateTime.Now.AddDays(1),
                         signingCredentials: signinCredentials
                     );
 

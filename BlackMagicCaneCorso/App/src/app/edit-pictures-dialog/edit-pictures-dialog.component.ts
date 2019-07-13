@@ -24,17 +24,21 @@ export class EditPicturesDialogComponent implements OnInit {
     private http: HttpClient) {
       this.dog = data.dogData;
       pubsub.$sub("Picture Added").subscribe(() =>{
-        this.dog.pictures = pictureService.Pictures;
-        this.selectedFiles.shift();
-        if(this.selectedFiles.length > 0){
-          //this.AddPicture(this.selectedFiles[0]);
-        }
+        this.GetPictures();
       });
       pubsub.$sub("Picture Deleted").subscribe(() =>{
-        this.dog.pictures = pictureService.Pictures;
+        this.GetPictures();
+      });
+      pubsub.$sub("Profile Picture Updated").subscribe(() => {
+        this.GetPictures();
       });
     }
 
+    GetPictures(){
+      this.pictureService.GetPictures(this.dog.id).subscribe(result =>{
+        this.dog.pictures = result;
+      });
+    }
   ngOnInit() {
   }
 
@@ -61,26 +65,22 @@ export class EditPicturesDialogComponent implements OnInit {
     xhr.addEventListener("load", this.completeHandler, false);
     xhr.addEventListener("error", this.errorHandler, false);
     xhr.addEventListener("abort", this.abortHandler, false);
+
     // Add any event handlers here...
     xhr.open('POST', "/Picture/Add?dogId=" + encodeURIComponent("" + this.dog.id) + "&dogName=" + encodeURIComponent("" + this.dog.name), true);
+    
+    var token = localStorage.getItem("token");
+    xhr.setRequestHeader("Authorization", 'Bearer ' + token);
+    
     xhr.send(formData);
     this.pubsub.$pub("Picture Added");
-    // const uploadReq = new HttpRequest('POST', "/Picture/Add?dogId=" + encodeURIComponent("" + this.dog.id) + "&dogName=" + encodeURIComponent("" + this.dog.name), formData, {
-    //   reportProgress: true,
-    //   headers: new HttpHeaders({"Content-Type": undefined})
-    // });
-
-    // this.http.request(uploadReq).subscribe(event => {
-    //   if (event.type === HttpEventType.UploadProgress) {
-    //     this.progress = Math.round(100 * event.loaded / event.total);
-    //   }
-    // });
   }
   progressHandler(event){
     this.progress = (event.loaded / event.total) * 100;
   }
   completeHandler(event){
     this.error = event.target.responseText;
+    this.progress = 0;
   }
   errorHandler(event){
     this.error = "Upload Failed";
@@ -88,17 +88,4 @@ export class EditPicturesDialogComponent implements OnInit {
   abortHandler(event){
     this.error = "Upload Aborted";
   }
-  // FileChange(event: any): void{
-  //   this.selectedFiles = event.target.files;
-  //   if( this.selectedFiles && this.selectedFiles.length > 0){
-  //     this.AddPicture(this.selectedFiles[0]);
-  //   }
-  // }
-  // AddPicture(file: File){
-  //   var upFile: FileParameter = {
-  //     data: file,
-  //     fileName: file.name
-  //   };
-  //   this.pictureService.addPicture(this.dog, upFile);
-  // }
 }

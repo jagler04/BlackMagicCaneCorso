@@ -24,6 +24,9 @@ export class LoginDialogComponent implements OnInit {
           this.invalidData = true;
         }
       });
+      pubsub.$sub("LogIn Attempt Failed").subscribe(() =>{
+        this.invalidData = true;
+      });
      }
 
   ngOnInit() {

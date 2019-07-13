@@ -126,7 +126,7 @@ export class AppComponent {
       if(dog.gender === "Female"){
         females.children.push({
           displayName: dog.name,
-          imgSource: profileIndex != -1 ? dog.name +"/" + dog.pictures[profileIndex].fileName : "",
+          imgSource: profileIndex != -1 ? dog.pictures[profileIndex].fileName : "",
           route: 'females/' + dog.name
         })
       }
@@ -134,7 +134,7 @@ export class AppComponent {
       {
         males.children.push({
           displayName: dog.name,
-          imgSource: profileIndex != -1 ? dog.name +"/" + dog.pictures[profileIndex].fileName : "",
+          imgSource: profileIndex != -1 ? dog.pictures[profileIndex].fileName : "",
           route: 'males/' + dog.name
         })
       }

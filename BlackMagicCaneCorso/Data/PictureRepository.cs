@@ -29,5 +29,22 @@ namespace BlackMagicCaneCorso.Data
         {
             return _context.Pictures.Where(p => p.DogID == dogId).ToList();
         }
+
+        public void ResetDogProfilePicture(int dogId)
+        {
+            var pofilePictures = _context.Pictures.Where(p => p.ProfilePic == true && p.DogID == dogId).ToList();
+            foreach(var profilePic in pofilePictures)
+            {
+                profilePic.ProfilePic = false;
+            }
+            _context.SaveChanges();
+        }
+
+        public void SetProfilePicture(int imgId)
+        {
+            var img = _context.Pictures.FirstOrDefault(p => p.ID == imgId);
+            img.ProfilePic = true;
+            _context.SaveChanges();
+        }
     }
 }

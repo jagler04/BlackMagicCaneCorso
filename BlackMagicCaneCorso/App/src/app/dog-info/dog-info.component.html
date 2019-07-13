@@ -12,6 +12,6 @@
     <mat-card-subtitle class="about">About</mat-card-subtitle>    
     <span>{{dog.description}}</span>
 </mat-card-content>
-<div class="images">
-    <img mat-card-image *ngFor="let img of dog.pictures" src="{{'assets/images/' + dog.name + '/' + img.fileName}}" (click)="viewImage('assets/images/' + dog.name + '/' + img.fileName)" />
+<div class="images" *ngFor="let img of pictures">
+    <img mat-card-image *ngIf="img.fileName !== undefined && img.fileName !== null" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + img.fileName}}" (click)="viewImage('https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + img.fileName)" />
 </div>

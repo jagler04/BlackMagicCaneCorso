@@ -64,6 +64,14 @@ namespace BlackMagicCaneCorso.Business
             }
             return lst;
         }
+
+        public List<PictureInfo> SetProfilePicture(int dogId, int imgId)
+        {
+            _pictureRepository.ResetDogProfilePicture(dogId);
+            _pictureRepository.SetProfilePicture(imgId);
+            return GetImagesForId(dogId);
+
+        }
     }
 
 }

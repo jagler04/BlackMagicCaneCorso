@@ -32,4 +32,7 @@ export class EditPictureDialogItemComponent implements OnInit {
       }
     });
   }
+  MakeProfilePicture(){
+    this.pictureService.MakeProfilePicture(this.dog.id, this.picture.id);
+  }
 }

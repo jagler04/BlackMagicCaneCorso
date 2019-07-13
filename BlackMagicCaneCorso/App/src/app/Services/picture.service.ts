@@ -27,4 +27,13 @@ export class PictureService {
       this.pubsub.$pub("Picture Deleted");
     });
   }
+  public MakeProfilePicture(dogId:number, imgId: number){
+    return this.pictureClient.setProfilePicture(dogId, imgId).subscribe(result => {
+      this.Pictures = result;
+      this.pubsub.$pub("Profile Picture Updated");
+    });
+  }
+  public GetPictures(id: number): Observable<PictureInfo[] | null>{
+    return this.pictureClient.getImages(id)
+  }
 }

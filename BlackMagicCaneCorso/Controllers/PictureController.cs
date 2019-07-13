@@ -15,6 +15,13 @@ namespace BlackMagicCaneCorso.Controllers
         {
             _pictureBusiness = pictureBusiness;
         }
+        [Route("Get/{dogId}")]
+        [HttpGet]
+        [ProducesResponseType(typeof(List<PictureInfo>), 200)]
+        public IActionResult GetImages(int dogId)
+        {
+            return Ok(_pictureBusiness.GetImagesForId(dogId));
+        }
         [Route("Add")]
         [HttpPost, DisableRequestSizeLimit, Authorize]
         [ProducesResponseType(typeof(List<PictureInfo>), 200)]
@@ -29,6 +36,13 @@ namespace BlackMagicCaneCorso.Controllers
         public IActionResult DeleteImage([FromBody] PictureInfo img)
         {
             return Ok(_pictureBusiness.DeleteImage(img));
+        }
+        [Route("SetProfilePicture")]
+        [HttpPut]//,Authorize]
+        [ProducesResponseType(typeof(List<PictureInfo>), 200)]
+        public IActionResult SetProfilePicture(int dogId, int imgId)
+        {
+            return Ok(_pictureBusiness.SetProfilePicture(dogId, imgId));
         }
     }
 }

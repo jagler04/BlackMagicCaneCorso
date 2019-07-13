@@ -30,7 +30,7 @@ export class AuthenticationService {
       localStorage.setItem("token", token);
       this.pubsub.$pub("LogIn Attempt");
     }, (error) => {
-      this.pubsub.$pub("LogIn Attempt");
+      this.pubsub.$pub("LogIn Attempt Failed");
     });
   }
   public LogOut(){

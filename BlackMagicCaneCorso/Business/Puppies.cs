@@ -39,7 +39,7 @@ namespace BlackMagicCaneCorso.Business
                 + Environment.NewLine + $"Phone Number: {frm.Phone}"
                 + Environment.NewLine + $"E-mail: {frm.Email}"
                 + Environment.NewLine
-                + Environment.NewLine + $"Will be going to a company home: {frm.CompanyHome}."
+                + Environment.NewLine + $"Will be going to a companion home: {frm.CompanyHome}."
                 + Environment.NewLine + $"Would like to get a puppy with the gender of {frm.PreferedGender}."
                 + Environment.NewLine + $"Will be used in show ring competition: {frm.ShowCompetition}"
                 + Environment.NewLine + $"Will be used in Agility, Obedience, Lure Coursing: {frm.AgilityCompetition}"

@@ -1,0 +1,19 @@
+<h6 class="questionAnswer">{{questionText}}</h6>
+<p class="questionOptions">
+    <label>
+        <input class="with-gap questionAnswer" name="{{grouping}}" type="radio" (change)="updateAnswer('Yes')"  />
+        <span class="fontColor">Yes</span>
+    </label>
+</p>
+<p class="questionOptions">
+    <label>
+        <input class="with-gap questionAnswer" name="{{grouping}}" type="radio" (change)="updateAnswer('No')"  />
+        <span class="fontColor">No</span>
+    </label>
+</p>
+<p class="questionOptions">
+    <label>
+        <input class="with-gap questionAnswer" name="{{grouping}}" type="radio" (change)="updateAnswer('Haven\'t decided yet')"  />
+        <span class="fontColor">Haven't decided yet</span>
+    </label>
+</p>

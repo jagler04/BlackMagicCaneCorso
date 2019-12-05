@@ -1,19 +1,16 @@
-using BlackMagicCaneCorso.Business;
-using BlackMagicCaneCorso.Data;
-using BlackMagicCaneCorso.Models;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using NSwag.AspNetCore;
+using Microsoft.Extensions.Hosting;
+using BlackMagicCaneCorso.Services;
+using BlackMagicCaneCorso.Data;
+using Microsoft.EntityFrameworkCore;
 using System.Text;
+using BlackMagicCaneCorso.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BlackMagicCaneCorso
 {
@@ -32,15 +29,13 @@ namespace BlackMagicCaneCorso
             services.AddDbContext<DogContext>(options =>
                  options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddScoped<Puppies>();
-            services.AddScoped<PuppiesRepository>();
-            services.AddScoped<Authorization>();
-            services.AddScoped<AuthorizationRepository>();
-            services.AddScoped<PictureBusiness>();
-            services.AddScoped<PictureRepository>();
+            services.AddControllersWithViews();
+            services.AddScoped<ApplicationService>();
+            services.AddScoped<DogService>();
+            services.AddScoped<ImageService>();
+            services.AddScoped<DogRepository>();
+            services.AddScoped<ImageRepository>();
             services.AddScoped<BlobRepository>();
-            services.AddScoped<AnnouncementBusiness>();
-            services.AddScoped<AnnouncementRepository>();
 
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
@@ -63,26 +58,20 @@ namespace BlackMagicCaneCorso
                         };
                     });
 
-
-            services.AddMvc().AddJsonOptions(options =>
-            {
-                options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
-                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
             var aiOptions = new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions();
             aiOptions.EnableAdaptiveSampling = false;
             services.AddApplicationInsightsTelemetry(aiOptions);
+
             services.AddSwaggerDocument();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "App/dist";
+                configuration.RootPath = "ClientApp/dist";
             });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -94,13 +83,21 @@ namespace BlackMagicCaneCorso
             }
 
             app.UseStaticFiles();
-            app.UseSpaStaticFiles();
+            if (!env.IsDevelopment())
+            {
+                app.UseSpaStaticFiles();
+            }
 
-            app.UseAuthentication();
+            app.UseRouting();
 
-            app.UseMvc();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller}/{action=Index}/{id?}");
+            });
 
-            app.UseSwagger();
+            app.UseOpenApi();
             app.UseSwaggerUi3();
 
             app.UseSpa(spa =>
@@ -108,14 +105,13 @@ namespace BlackMagicCaneCorso
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,
                 // see https://go.microsoft.com/fwlink/?linkid=864501
 
-                spa.Options.SourcePath = "App";
+                spa.Options.SourcePath = "ClientApp";
 
                 if (env.IsDevelopment())
                 {
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
-
         }
     }
 }

@@ -1,0 +1,54 @@
+
+@charset "UTF-8";
+
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+// Color
+@import "assets/sass/components/_color-variables";
+@import "assets/sass/components/color-classes";
+
+// Variables;
+@import "assets/sass/components/variables";
+
+@import '~materialize-css/sass/materialize.scss';
+
+button.mat-menu-item {
+    background-color: $primary-color ;
+    color: $navbar-font-color;
+}
+
+.sidenav {
+    background-color: $primary-color ;
+}
+.sidenav li a  {
+    color: $navbar-font-color;
+}
+.dogCard{
+    background-color: $primary-color;
+    color: $navbar-font-color;
+}
+.prop {
+    color: goldenrod;
+}
+.priColor {
+    background-color: $primary-color;
+}
+.fontColor {
+    color: $navbar-font-color;
+}
+.input-field label, input, .secondaryFont {
+    color: goldenrod !important;
+}
+.mat-autocomplete-panel, .mat-autocomplete-panel {
+    background-color: $primary-color;
+    color: goldenrod !important;
+}
+.mat-form-field-label, .questionAnswer {
+    color: goldenrod !important;
+}
+.submitButton {
+    background-color: goldenrod;
+    margin-left: 30px;  
+}

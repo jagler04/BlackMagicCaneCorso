@@ -1,9 +1,0 @@
-mat-icon.close {
-    z-index: 10;
-    color: gray;
-    float: right;
-    font-size: 40pt;
-    display: fixed;
-    right: 1%;
-    cursor: pointer;
-}

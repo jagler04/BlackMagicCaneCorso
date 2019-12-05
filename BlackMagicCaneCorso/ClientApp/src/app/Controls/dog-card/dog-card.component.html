@@ -1,0 +1,48 @@
+<div class="card hide-on-med-and-up priColor fontColor">
+    <div class="card-image waves-effect waves-block waves-light">
+        <img class="activator" src="{{dog.menuImage}}">
+    </div>
+    <div class="card-content">
+        <span class="card-title activator fontColor">{{dog.name}}<i class="material-icons right">expand_less</i></span>
+    </div>
+    <div class="card-reveal fontColor" style="background-color:#52247f;">
+        <span class="card-title">{{dog.name}}<i class="material-icons right">close</i></span>
+        <div>
+            <h5>Titles:</h5>
+            <p>{{dog.titles}}</p>
+        </div>
+        <p><b>About: </b>{{dog.description}}</p>
+        <div class="container">            
+            <div class="row" *ngFor="let imgSet of imageSets3">
+                <img  class="materialboxed col s4" *ngIf="imgSet[0]" src="{{imgSet[0]}}" #materialboxed>
+                <img  class="materialboxed col s4" *ngIf="imgSet[1]" src="{{imgSet[1]}}" #materialboxed>
+                <img  class="materialboxed col s4" *ngIf="imgSet[2]" src="{{imgSet[2]}}" #materialboxed>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="card col s8 hide-on-med-and-down dogCard" style="left: 17%;">
+        <mat-card>
+            <mat-card-title>{{dog.name}}</mat-card-title>
+            <mat-card-subtitle>
+                <b class="prop">Titles: </b>{{dog.titles}}
+            </mat-card-subtitle>
+            <img mat-card-image src="{{dog.menuImage}}">
+            <mat-card-content>
+                <p><b class="prop">About: </b>{{dog.description}}</p>
+                <div class="container">
+                    <div class="row" *ngFor="let imgSet of imageSets6">
+                        <img  class="materialboxed col s2" *ngIf="imgSet[0]" src="{{imgSet[0]}}" #materialboxed>
+                        <img  class="materialboxed col s2" *ngIf="imgSet[1]" src="{{imgSet[1]}}" #materialboxed>
+                        <img  class="materialboxed col s2" *ngIf="imgSet[2]" src="{{imgSet[2]}}" #materialboxed>
+                        <img  class="materialboxed col s2" *ngIf="imgSet[3]" src="{{imgSet[3]}}" #materialboxed>
+                        <img  class="materialboxed col s2" *ngIf="imgSet[4]" src="{{imgSet[4]}}" #materialboxed>
+                        <img  class="materialboxed col s2" *ngIf="imgSet[5]" src="{{imgSet[5]}}" #materialboxed>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+

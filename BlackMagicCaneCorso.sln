@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.168
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackMagicCaneCorso", "BlackMagicCaneCorso\BlackMagicCaneCorso.csproj", "{209902E0-F472-459E-87A6-BA68ED727DAA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackMagicCaneCorso", "BlackMagicCaneCorso\BlackMagicCaneCorso.csproj", "{78A86F46-0E32-4736-BB1C-84862F3A3206}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{209902E0-F472-459E-87A6-BA68ED727DAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{209902E0-F472-459E-87A6-BA68ED727DAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{209902E0-F472-459E-87A6-BA68ED727DAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{209902E0-F472-459E-87A6-BA68ED727DAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78A86F46-0E32-4736-BB1C-84862F3A3206}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78A86F46-0E32-4736-BB1C-84862F3A3206}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78A86F46-0E32-4736-BB1C-84862F3A3206}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78A86F46-0E32-4736-BB1C-84862F3A3206}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {BCEE3B20-C376-4772-878A-C290FF24CAD8}
+		SolutionGuid = {16CBEF17-F27D-4AD4-9822-766C113796E6}
 	EndGlobalSection
 EndGlobal

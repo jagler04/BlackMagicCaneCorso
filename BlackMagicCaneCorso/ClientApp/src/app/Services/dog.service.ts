@@ -9,8 +9,9 @@ import { PubSubService } from './pub-sub.service';
 export class DogService {
 
   public Dogs: Map<string, Array<DogModel>> = new Map<string, Array<DogModel>>();
-  constructor(private brtClient: Client, private pubsub: PubSubService) { 
-    this.brtClient.dog().subscribe(result => {
+  
+  constructor(private bmccClient: Client, private pubsub: PubSubService) { 
+    this.bmccClient.dogGet().subscribe(result => {
       this.Dogs = new Map<string, Array<DogModel>>();
       result.forEach(dog =>{
         if(this.Dogs.has(dog.gender)){

@@ -17,7 +17,7 @@ export class DogsComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       if (params !== undefined) {
-        if(this.dogService.Dogs.has("female")){
+        if(this.dogService.Dogs.has("Female")){
           this.setVisibleDogs(params);
         }
         else{

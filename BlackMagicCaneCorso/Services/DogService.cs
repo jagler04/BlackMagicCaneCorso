@@ -19,6 +19,23 @@ namespace BlackMagicCaneCorso.Services
         public List<DogModel> GetDogs()
         {
             var dogs = _dogRepository.GetDogs();
+            var index = dogs.FindIndex(0, d => d.Gender == "Female");
+
+            dogs.Insert(index, new DogModel
+            {
+                Id = 999999,
+                Name = "All",
+                Gender = "Female",
+                MenuImage = ""
+            });
+            index = dogs.FindIndex(0, d => d.Gender == "Male");
+            dogs.Insert(index, new DogModel
+            {
+                Id = 999998,
+                Name = "All",
+                Gender = "Male",
+                MenuImage = ""
+            });
             foreach(var dog in dogs)
             {
                 dog.Images = _imageRepository.GetImagesById(dog.Id);

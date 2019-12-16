@@ -13,12 +13,12 @@
             <button mat-menu-item [matMenuTriggerFor]="males">Males</button>
         </mat-menu>
         <mat-menu #females="matMenu">
-            <button mat-menu-item *ngFor="let dog of dogService.Dogs.get('female')" [routerLink]="['/dogs/female', dog.name]" 
-                    routerLinkActive="active"><img *ngIf="dog.menuImage !== ''" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + dog.menuImage}}"/>{{dog.name}}</button>
+            <button mat-menu-item *ngFor="let dog of dogService.Dogs.get('Female')" [routerLink]="['/dogs/Female', dog.name]" 
+                    routerLinkActive="active"><img *ngIf="dog.menuImage !== null" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + dog.menuImage}}"/>{{dog.name}}</button>
         </mat-menu>
         <mat-menu #males="matMenu">
-            <button mat-menu-item *ngFor="let dog of dogService.Dogs.get('male')" [routerLink]="['/dogs/male', dog.name]" 
-                    routerLinkActive="active"><img *ngIf="dog.menuImage !== ''" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + dog.menuImage}}"/>{{dog.name}}</button>
+            <button mat-menu-item *ngFor="let dog of dogService.Dogs.get('Male')" [routerLink]="['/dogs/Male', dog.name]" 
+                    routerLinkActive="active"><img *ngIf="dog.menuImage !== null" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + dog.menuImage}}"/>{{dog.name}}</button>
         </mat-menu>
         <a href="#" data-target="slide-out" class="sidenav-trigger button-collapse left"><i class="material-icons white-text">menu</i></a>
     </div>
@@ -32,13 +32,13 @@
     <mat-menu  #dogsmobile="matMenu">
         <button mat-menu-item [matMenuTriggerFor]="femalesmobile">Females</button>
         <mat-menu #femalesmobile="matMenu">
-            <button mat-menu-item *ngFor="let dog of dogService.Dogs.get('female')" [routerLink]="['/dogs/female', dog.name]" 
-                routerLinkActive="active" (click)="close()"><img *ngIf="dog.menuImage !== ''" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + dog.menuImage}}"/>{{dog.name}}</button>
+            <button mat-menu-item *ngFor="let dog of dogService.Dogs.get('Female')" [routerLink]="['/dogs/Female', dog.name]" 
+                routerLinkActive="active" (click)="close()"><img *ngIf="dog.menuImage !== null" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + dog.menuImage}}"/>{{dog.name}}</button>
         </mat-menu>
         <button mat-menu-item [matMenuTriggerFor]="malesmobile">Males</button>
         <mat-menu #malesmobile="matMenu">
-            <button mat-menu-item *ngFor="let dog of dogService.Dogs.get('male')" [routerLink]="['/dogs/male', dog.name]" 
-                routerLinkActive="active" (click)="close()"><img *ngIf="dog.menuImage !== ''" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + dog.menuImage}}"/>{{dog.name}}</button>
+            <button mat-menu-item *ngFor="let dog of dogService.Dogs.get('Male')" [routerLink]="['/dogs/Male', dog.name]" 
+                routerLinkActive="active" (click)="close()"><img *ngIf="dog.menuImage !== null" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + dog.menuImage}}"/>{{dog.name}}</button>
         </mat-menu>
     </mat-menu >
 </ul>

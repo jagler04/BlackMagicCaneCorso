@@ -1,0 +1,158 @@
+<div class="row hide-on-med-and-down priColor fontColor">
+    <form class="col s10">
+        <div class="row">
+            <div class="input-field col s4 offset-s1">
+                <mat-form-field>
+                    <input matInput id="dog_name" placeholder="Dog name" [(ngModel)]="dog.name" [ngModelOptions]="{standalone: true}" />
+                </mat-form-field>
+            </div>
+            <div class="input-field col s4">
+                <mat-form-field>
+                    <input matInput id="color" placeholder="Color" [(ngModel)]="dog.color" [ngModelOptions]="{standalone: true}" />
+                </mat-form-field>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="input-field col s4 offset-s1">
+                <mat-form-field>
+                    <input matInput id="bite_type" placeholder="Bite Type" [(ngModel)]="dog.biteType" [ngModelOptions]="{standalone: true}" />
+                </mat-form-field>
+            </div>
+            <div class="input-field col s4">
+                <mat-form-field>
+                    <input matInput id="weight" placeholder="Weight" [(ngModel)]="dog.weight" [ngModelOptions]="{standalone: true}" />
+                </mat-form-field>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="input-field col s4 offset-s1">
+                <mat-form-field>
+                    <input matInput id="birthdate" placeholder="Birthdate" [(ngModel)]="dog.birthdate" [ngModelOptions]="{standalone: true}" />
+                </mat-form-field>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="input-field col s10 offset-s1">
+                <mat-form-field>
+                    <input matInput id="titles" placeholder="Titles" [(ngModel)]="dog.titles" [ngModelOptions]="{standalone: true}" />
+                </mat-form-field>
+            </div>            
+        </div>
+        <div class="row">
+            <div class="input-field col s10 offset-s1">
+                <mat-form-field>
+                    <textarea matInput id="description" placeholder="Description" [(ngModel)]="dog.description" [ngModelOptions]="{standalone: true}" ></textarea> 
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+    
+    <div class="container">            
+        <div class="row" *ngFor="let imgSet of imageSets3">
+            <div class="col s4">
+                <i *ngIf="dog.menuImage !== imgSet[0]" class="medium material-icons">star_border</i>
+                <i *ngIf="dog.menuImage === imgSet[0]" class="medium material-icons">star</i>
+                <i class="medium material-icons">highlight_off</i>
+                <img  class="materialboxed col s4" *ngIf="imgSet[0]" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + imgSet[0]}}" #materialboxed>
+            </div>
+            <div class="col s4">
+                <i *ngIf="dog.menuImage !== imgSet[1]" class="medium material-icons">star_border</i>
+                <i *ngIf="dog.menuImage === imgSet[1]" class="medium material-icons">star</i>
+                <i class="medium material-icons">highlight_off</i>
+                <img  class="materialboxed col s4" *ngIf="imgSet[1]" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + imgSet[1]}}" #materialboxed>
+            </div>
+            <div class="col s4">
+                <i *ngIf="dog.menuImage !== imgSet[2]" class="medium material-icons">star_border</i>
+                <i *ngIf="dog.menuImage === imgSet[2]" class="medium material-icons">star</i>
+                <i class="medium material-icons">highlight_off</i>
+                <img  class="materialboxed col s4" *ngIf="imgSet[2]" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + imgSet[2]}}" #materialboxed>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="row hide-on-med-and-down">
+    <div class="input-field col s12">
+        <mat-form-field>
+            <input matInput id="dog_name" placeholder="Dog name" [(ngModel)]="dog.name" [ngModelOptions]="{standalone: true}" />
+        </mat-form-field>
+    </div>
+    <div class="input-field col s12">
+        <mat-form-field>
+            <input matInput id="titles" placeholder="Titles" [(ngModel)]="dog.titles" [ngModelOptions]="{standalone: true}" />
+        </mat-form-field>
+    </div>
+    <div class="input-field col s12">
+        <mat-form-field>
+            <input matInput id="color" placeholder="Color" [(ngModel)]="dog.color" [ngModelOptions]="{standalone: true}" />
+        </mat-form-field>
+    </div>
+    <div class="input-field col s12">
+        <mat-form-field>
+            <input matInput id="color" placeholder="Color" [(ngModel)]="dog.color" [ngModelOptions]="{standalone: true}" />
+        </mat-form-field>
+    </div>
+    <div class="input-field col s12">
+        <mat-form-field>
+            <input matInput id="bite_type" placeholder="Bite Type" [(ngModel)]="dog.biteType" [ngModelOptions]="{standalone: true}" />
+        </mat-form-field>
+    </div>
+    <div class="input-field col s12">
+        <mat-form-field>
+            <input matInput id="weight" placeholder="Weight" [(ngModel)]="dog.weight" [ngModelOptions]="{standalone: true}" />
+        </mat-form-field>
+    </div>
+    <div class="input-field col s12">
+        <mat-form-field>
+            <input matInput id="birthdate" placeholder="Birthdate" [(ngModel)]="dog.birthdate" [ngModelOptions]="{standalone: true}" />
+        </mat-form-field>
+    </div>
+    <div class="input-field col s12">
+        <mat-form-field>
+            <input matInput id="description" placeholder="Description" [(ngModel)]="dog.description" [ngModelOptions]="{standalone: true}" />
+        </mat-form-field>
+    </div>
+    <div class="container">
+        <div class="row" *ngFor="let imgSet of imageSets6">
+            <div class="col s2">
+                <i *ngIf="dog.menuImage !== imgSet[0]" class="medium material-icons">star_border</i>
+                <i *ngIf="dog.menuImage === imgSet[0]" class="medium material-icons">star</i>
+                <i class="medium material-icons">highlight_off</i>
+                <img  class="materialboxed col s2" *ngIf="imgSet[0]" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + imgSet[0]}}" #materialboxed>                
+            </div>
+            <div class="col s2">
+                <i *ngIf="dog.menuImage !== imgSet[1]" class="medium material-icons">star_border</i>
+                <i *ngIf="dog.menuImage === imgSet[1]" class="medium material-icons">star</i>
+                <i class="medium material-icons">highlight_off</i>
+                <img  class="materialboxed col s2" *ngIf="imgSet[1]" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + imgSet[1]}}" #materialboxed>
+            </div>
+            <div class="col s2">
+                <i *ngIf="dog.menuImage !== imgSet[2]" class="medium material-icons">star_border</i>
+                <i *ngIf="dog.menuImage === imgSet[2]" class="medium material-icons">star</i>
+                <i class="medium material-icons">highlight_off</i>
+                <img  class="materialboxed col s2" *ngIf="imgSet[2]" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + imgSet[2]}}" #materialboxed>
+            </div>
+            <div class="col s2">
+                <i *ngIf="dog.menuImage !== imgSet[3]" class="medium material-icons">star_border</i>
+                <i *ngIf="dog.menuImage === imgSet[3]" class="medium material-icons">star</i>
+                <i class="medium material-icons">highlight_off</i>
+                <img  class="materialboxed col s2" *ngIf="imgSet[3]" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + imgSet[3]}}" #materialboxed>
+            </div>
+            <div class="col s2">
+                <i *ngIf="dog.menuImage !== imgSet[4]" class="medium material-icons">star_border</i>
+                <i *ngIf="dog.menuImage === imgSet[4]" class="medium material-icons">star</i>
+                <i class="medium material-icons">highlight_off</i>
+                <img  class="materialboxed col s2" *ngIf="imgSet[4]" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + imgSet[4]}}" #materialboxed>
+            </div>
+            <div class="col s2">
+                <i *ngIf="dog.menuImage !== imgSet[5]" class="medium material-icons">star_border</i>
+                <i *ngIf="dog.menuImage === imgSet[5]" class="medium material-icons">star</i>
+                <i class="medium material-icons">highlight_off</i>
+                <img  class="materialboxed col s2" *ngIf="imgSet[5]" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + imgSet[5]}}" #materialboxed>
+            </div>
+        </div>
+    </div>
+</div> -->
+

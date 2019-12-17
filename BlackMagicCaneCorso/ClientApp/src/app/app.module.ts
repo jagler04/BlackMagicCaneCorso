@@ -21,6 +21,7 @@ import { HomeComponent } from './Pages/home/home.component';
 import { AboutComponent } from './Pages/about/about.component';
 import { PubSubService } from './Services/pub-sub.service';
 import {NgxMaterialize} from '@smip/ngx-materialize';
+import { EditDogComponent } from './Controls/edit-dog/edit-dog.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {NgxMaterialize} from '@smip/ngx-materialize';
     ApplyComponent,
     QuestionComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    EditDogComponent
   ],
   imports: [
     BrowserModule,

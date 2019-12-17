@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChildren, AfterViewInit, QueryList, ElementRef } from '@angular/core';
-import { DogModel } from 'src/app/Models/DogModel';
 import * as M from "materialize-css/dist/js/materialize";
+import { DogModel } from 'src/app/Clients/client';
 
 @Component({
   selector: 'dog-card',

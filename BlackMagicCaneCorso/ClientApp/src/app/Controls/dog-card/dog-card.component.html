@@ -1,4 +1,5 @@
-<div class="card hide-on-med-and-up priColor fontColor">
+<div class="card hide-on-med-and-up priColor fontColor">    
+    <a [routerLink]="['/edit', dog.id]" routerLinkActive="active"><i class="medium material-icons">edit</i></a>
     <div class="card-image waves-effect waves-block waves-light">
         <img class="activator" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + dog.menuImage}}">
     </div>
@@ -25,9 +26,10 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="card col s8 hide-on-med-and-down dogCard" style="left: 17%;">
+<div class="row hide-on-med-and-down">
+    <div class="card col s8 dogCard" style="left: 17%;">
         <mat-card>
+            <a [routerLink]="['/edit', dog.id]" routerLinkActive="active"><i class="small material-icons fontColor right">edit</i></a>
             <mat-card-title>{{dog.name}}</mat-card-title>
             <mat-card-subtitle>
                 <b class="prop">Titles: </b>{{dog.titles}}

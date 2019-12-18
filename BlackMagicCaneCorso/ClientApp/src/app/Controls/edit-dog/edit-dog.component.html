@@ -50,25 +50,58 @@
         </div>
     </form>
     
-    <div class="container">            
-        <div class="row" *ngFor="let imgSet of imageSets3">
-            <div class="col s4">
-                <i *ngIf="dog.menuImage !== imgSet[0]" class="medium material-icons">star_border</i>
-                <i *ngIf="dog.menuImage === imgSet[0]" class="medium material-icons">star</i>
-                <i class="medium material-icons">highlight_off</i>
-                <img  class="materialboxed col s4" *ngIf="imgSet[0]" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + imgSet[0]}}" #materialboxed>
+    <div class="container">
+        <h5>Images:</h5>
+        <a class="btn-floating btn-large right" (click)="AddImage()"><i class="material-icons tooltipped" data-position="top" data-tooltip="Add Image" #tooltipped>add</i></a>
+        <div class="row" *ngFor="let imgSet of imageSets6">
+            <div *ngIf="imgSet[0] !== undefined" class="col s2">
+                <div class="right">
+                    <i *ngIf="dog.menuImage !== imgSet[0]" class="small material-icons tooltipped" data-position="top" data-tooltip="Set as menu image" #tooltipped>star_border</i>
+                    <i *ngIf="dog.menuImage === imgSet[0]" class="small material-icons tooltipped" data-position="top" data-tooltip="Menu image" #tooltipped>star</i>
+                    <i class="small material-icons tooltipped" data-position="top" data-tooltip="Delete image" #tooltipped>highlight_off</i>
+                </div>
+
+                <img  class="materialboxed col s12" *ngIf="imgSet[0]" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + imgSet[0]}}" #materialboxed>                
+            </div >
+            <div *ngIf="imgSet[1] !== undefined" class="col s2">
+                <div class="right">
+                    <i *ngIf="dog.menuImage !== imgSet[1]" class="small material-icons tooltipped" data-position="top" data-tooltip="Set as menu image" #tooltipped>star_border</i>
+                    <i *ngIf="dog.menuImage === imgSet[1]" class="small material-icons tooltipped" data-position="top" data-tooltip="Menu image" #tooltipped>star</i>
+                    <i class="small material-icons tooltipped" data-position="top" data-tooltip="Delete image" #tooltipped>highlight_off</i>
+                </div>
+                <img  class="materialboxed col s12" *ngIf="imgSet[1]" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + imgSet[1]}}" #materialboxed>
             </div>
-            <div class="col s4">
-                <i *ngIf="dog.menuImage !== imgSet[1]" class="medium material-icons">star_border</i>
-                <i *ngIf="dog.menuImage === imgSet[1]" class="medium material-icons">star</i>
-                <i class="medium material-icons">highlight_off</i>
-                <img  class="materialboxed col s4" *ngIf="imgSet[1]" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + imgSet[1]}}" #materialboxed>
+            <div *ngIf="imgSet[2] !== undefined" class="col s2">
+                <div class="right">
+                    <i *ngIf="dog.menuImage !== imgSet[2]" class="small material-icons tooltipped" data-position="top" data-tooltip="Set as menu image" #tooltipped>star_border</i>
+                    <i *ngIf="dog.menuImage === imgSet[2]" class="small material-icons tooltipped" data-position="top" data-tooltip="Menu image" #tooltipped>star</i>
+                    <i class="small material-icons tooltipped" data-position="top" data-tooltip="Delete image" #tooltipped>highlight_off</i>
+                </div>
+                <img  class="materialboxed col s12" *ngIf="imgSet[2]" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + imgSet[2]}}" #materialboxed>
             </div>
-            <div class="col s4">
-                <i *ngIf="dog.menuImage !== imgSet[2]" class="medium material-icons">star_border</i>
-                <i *ngIf="dog.menuImage === imgSet[2]" class="medium material-icons">star</i>
-                <i class="medium material-icons">highlight_off</i>
-                <img  class="materialboxed col s4" *ngIf="imgSet[2]" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + imgSet[2]}}" #materialboxed>
+            <div *ngIf="imgSet[3] !== undefined" class="col s2">
+                <div class="right">
+                    <i *ngIf="dog.menuImage !== imgSet[3]" class="small material-icons tooltipped" data-position="top" data-tooltip="Set as menu image" #tooltipped>star_border</i>
+                    <i *ngIf="dog.menuImage === imgSet[3]" class="small material-icons tooltipped" data-position="top" data-tooltip="Menu image" #tooltipped>star</i>
+                    <i class="small material-icons tooltipped" data-position="top" data-tooltip="Delete image" #tooltipped>highlight_off</i>
+                </div>
+                <img  class="materialboxed col s12" *ngIf="imgSet[3]" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + imgSet[3]}}" #materialboxed>
+            </div>
+            <div *ngIf="imgSet[4] !== undefined" class="col s2">
+                <div class="right">
+                    <i *ngIf="dog.menuImage !== imgSet[4]" class="small material-icons tooltipped" data-position="top" data-tooltip="Set as menu image" #tooltipped>star_border</i>
+                    <i *ngIf="dog.menuImage === imgSet[4]" class="small material-icons tooltipped" data-position="top" data-tooltip="Menu image" #tooltipped>star</i>
+                    <i class="small material-icons tooltipped" data-position="top" data-tooltip="Delete image" #tooltipped>highlight_off</i>
+                </div>
+                <img  class="materialboxed col s12" *ngIf="imgSet[4]" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + imgSet[4]}}" #materialboxed>
+            </div>
+            <div *ngIf="imgSet[5] !== undefined" class="col s2">
+                <div class="right">
+                    <i *ngIf="dog.menuImage !== imgSet[5]" class="small material-icons tooltipped" data-position="top" data-tooltip="Set as menu image" #tooltipped>star_border</i>
+                    <i *ngIf="dog.menuImage === imgSet[5]" class="small material-icons tooltipped" data-position="top" data-tooltip="Menu image" #tooltipped>star</i>
+                    <i class="small material-icons tooltipped" data-position="top" data-tooltip="Delete image" #tooltipped>highlight_off</i>
+                </div>
+                <img  class="materialboxed col s12" *ngIf="imgSet[5]" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + imgSet[5]}}" #materialboxed>
             </div>
         </div>
     </div>

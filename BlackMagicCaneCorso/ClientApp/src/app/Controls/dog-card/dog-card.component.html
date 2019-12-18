@@ -1,7 +1,7 @@
 <div class="card hide-on-med-and-up priColor fontColor">    
     <a [routerLink]="['/edit', dog.id]" routerLinkActive="active"><i class="medium material-icons">edit</i></a>
     <div class="card-image waves-effect waves-block waves-light">
-        <img class="activator" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + dog.menuImage}}">
+        <img class="activator" *ngIf="dog.menuImage !== null" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + dog.menuImage}}">
     </div>
     <div class="card-content">
         <span class="card-title activator fontColor">{{dog.name}}<i class="material-icons right">expand_less</i></span>
@@ -34,7 +34,7 @@
             <mat-card-subtitle>
                 <b class="prop">Titles: </b>{{dog.titles}}
             </mat-card-subtitle>
-            <img mat-card-image src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + dog.menuImage}}">
+            <img mat-card-image *ngIf="dog.menuImage !== null" src="{{'https://blackmagiccanecorso.blob.core.windows.net/' + dog.name.toLowerCase() + '/' + dog.menuImage}}">
             <mat-card-content>
                 <p><b>Color: </b>{{dog.color}}</p>
                 <p><b>Bite Type: </b>{{dog.biteType}}</p>

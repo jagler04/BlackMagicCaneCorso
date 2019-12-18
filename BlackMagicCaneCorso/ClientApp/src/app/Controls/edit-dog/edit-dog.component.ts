@@ -18,6 +18,7 @@ export class EditDogComponent implements OnInit, AfterViewInit {
   public imageSets6: Array<Array<string>> = [];
 
   @ViewChildren('materialboxed') materialboxed: QueryList<ElementRef>;
+  @ViewChildren('tooltipped') tooltipped: QueryList<ElementRef>;
 
   constructor(private route: ActivatedRoute, private dogService: DogService, private pubSub: PubSubService) { }
 
@@ -63,6 +64,8 @@ export class EditDogComponent implements OnInit, AfterViewInit {
     if(six.length > 0){
       this.imageSets6.push(six);
     }
+    console.log(this.imageSets3);
+    console.log(this.imageSets6);
   }
   private findDog(id: string): Boolean{
     var dogId = Number(id);
@@ -70,16 +73,24 @@ export class EditDogComponent implements OnInit, AfterViewInit {
       genders.forEach(dog => {
         if(dog.id === dogId){
           this.dog = dog;
-          return true;
         }
       });
     });
+    if(this.dog !== null){
+      return true;
+    }
+    console.log("returning false");
     return false;
   }
 
   ngAfterViewInit() {
     const imgArray = this.materialboxed.toArray();
     imgArray.forEach((image) => M.Materialbox.init(image.nativeElement));
+    const tool = this.tooltipped.toArray();
+    tool.forEach((t) => M.Tooltip.init(t.nativeElement));
   }
 
+  public AddImage(){
+    console.log("test");
+  }
 }
